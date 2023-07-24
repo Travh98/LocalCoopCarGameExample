@@ -18,10 +18,12 @@ var direction := Vector3()
 
 # Components
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
 
 func _ready():
 	health_component.health_died.connect(on_death)
+	nav_agent.velocity_computed.connect(on_nav_velocity_computed)
 	print("Creating class mob")
 
 
@@ -35,6 +37,17 @@ func apply_movement():
 
 func apply_jump():
 	velocity.y = jump_height
+
+
+func on_nav_velocity_computed(safe_velocity: Vector3):
+	velocity = velocity.move_toward(safe_velocity, 0.25)
+
+
+func apply_nav_agent_velocity():
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - current_location).normalized()
+	nav_agent.set_velocity(new_velocity * speed)
 
 
 func accelerate(delta: float) -> void:
