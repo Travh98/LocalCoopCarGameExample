@@ -1,0 +1,13 @@
+Sprite3D
+SubViewport
+DirectionalLight3D
+WorldEnvironment
+Camera3D
+CollisionShape3D
+MeshInstance3D
+StaticBody3D
+Node
+CharacterBody3D
+Label
+VBoxContainer
+Control

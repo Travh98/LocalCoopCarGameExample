@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhdjh3kx1ex30"]
+
+[ext_resource type="PackedScene" uid="uid://bf7ipeymg7bat" path="res://components/dev_info_tag/dev_info_tag.tscn" id="1_rn3tj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c2bnw"]
+viewport_path = NodePath("SubViewport")
+
+[node name="WorldSpaceUI" type="Sprite3D"]
+billboard = 1
+texture = SubResource("ViewportTexture_c2bnw")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="DevInfoTag" parent="SubViewport" instance=ExtResource("1_rn3tj")]
+offset_right = 300.0
+offset_bottom = 200.0

@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://qwl4j87quflh"]
+
+[ext_resource type="Script" path="res://entities/billy_bob/billy_bob.gd" id="1_asqm7"]
+[ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="1_trc1s"]
+[ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_5xlna"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_73hmw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_td5kj"]
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyvna"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b1epm"]
+material = SubResource("StandardMaterial3D_oyvna")
+size = Vector3(0.25, 0.25, 0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uy2sm"]
+viewport_path = NodePath("SubViewport")
+
+[node name="BillyBob" type="CharacterBody3D"]
+script = ExtResource("1_asqm7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_73hmw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_td5kj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70676, -0.293466)
+mesh = SubResource("BoxMesh_b1epm")
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_trc1s")]
+
+[node name="StateMachine" type="Node" parent="."]
+
+[node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+texture = SubResource("ViewportTexture_uy2sm")
