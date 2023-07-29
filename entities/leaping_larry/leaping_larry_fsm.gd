@@ -1,6 +1,6 @@
 extends StateMachine
 
-var mob: Mob
+var mob: RbMob
 var rand_gen: RandomNumberGenerator
 var follow_target: Node3D = null
 @onready var nav_agent: NavigationAgent3D = $"../NavigationAgent3D"
@@ -41,6 +41,7 @@ func _state_logic(delta):
 		
 	mob.accelerate(delta)
 	mob.apply_movement()
+	mob.prevent_y_axis_rotation()
 
 func _get_transition(_delta):
 	match state:

@@ -1,5 +1,5 @@
-class_name Mob
-extends CharacterBody3D
+class_name RbMob
+extends RigidBody3D
 
 ## Base Mob class using CharacterBody3D
 ##
@@ -24,23 +24,32 @@ var direction := Vector3()
 func _ready():
 	health_component.health_died.connect(on_death)
 	nav_agent.velocity_computed.connect(on_nav_velocity_computed)
-	print("Creating class mob")
+	print("Creating class RbMob")
 
 
 func apply_gravity(delta):
-	velocity.y -= gravity * delta
+	if 
+	apply_central_force(-Vector3.UP * gravity * delta)
 
 
 func apply_movement():
-	move_and_slide()
+	# I think we don't need this, since move and slide relies on Velocity, which
+	# is set through all the central force functions
+#	move_and_slide()
+	pass
+
+
+func prevent_y_axis_rotation():
+	rotation_degrees.x = 0
+	rotation_degrees.z = 0
 
 
 func apply_jump():
-	velocity.y = jump_height
+	apply_impulse(global_transform.basis.y.normalized() * jump_height)
 
 
 func on_nav_velocity_computed(safe_velocity: Vector3):
-	velocity = velocity.move_toward(safe_velocity, 0.25)
+	linear_velocity = linear_velocity.move_toward(safe_velocity, 0.25)
 
 
 func apply_nav_agent_velocity():
@@ -52,7 +61,7 @@ func apply_nav_agent_velocity():
 
 func accelerate(delta: float) -> void:
 	# Using only the horizontal velocity, interpolate towards the input.
-	var temp_vel := velocity
+	var temp_vel := linear_velocity
 	temp_vel.y = 0
 	
 	var temp_accel: float
@@ -65,13 +74,13 @@ func accelerate(delta: float) -> void:
 	
 	temp_vel = temp_vel.lerp(target, temp_accel * delta)
 	
-	velocity.x = temp_vel.x
-	velocity.z = temp_vel.z
+	linear_velocity.x = temp_vel.x
+	linear_velocity.z = temp_vel.z
 
 
 func on_death():
 	global_position = Vector3.ZERO
-	velocity = Vector3.ZERO
+	linear_velocity = Vector3.ZERO
 	health_component.full_heal()
 
 
@@ -100,3 +109,14 @@ func rotate_towards_motion_no_y(delta: float):
 	var angle := current_direction.signed_angle_to(direction, axis)
 	var angle_step: float = min(angular_speed * delta, abs(angle)) * sign(angle)
 	rotate(axis, angle_step)
+
+
+func is_on_floor():
+	var space_state = get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, -1.5, 0))
+	var result = space_state.intersect_ray(query)
+	if result:
+		return true
+	else:
+		return false

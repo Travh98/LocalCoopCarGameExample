@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://udtf8yb2e5n2"]
+
+[ext_resource type="Script" path="res://entities/rb_mob.gd" id="1_2tbdf"]
+[ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="1_w5cba"]
+[ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="2_1cuht"]
+[ext_resource type="Script" path="res://entities/leaping_larry/leaping_larry_fsm.gd" id="2_4750a"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w34hg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6v0lw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gudy1"]
+albedo_color = Color(0.929412, 0.615686, 0.317647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nk02b"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ibgqh"]
+viewport_path = NodePath("SubViewport")
+
+[node name="LeapingLarry" type="RigidBody3D"]
+script = ExtResource("1_2tbdf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_w34hg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_6v0lw")
+surface_material_override/0 = SubResource("StandardMaterial3D_gudy1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49836, -0.478043)
+mesh = SubResource("BoxMesh_nk02b")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_w5cba")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_4750a")
+
+[node name="DevInfoTag3D" parent="." instance=ExtResource("2_1cuht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47934, 0)
+texture = SubResource("ViewportTexture_ibgqh")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WanderTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true

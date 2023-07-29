@@ -17,7 +17,7 @@ albedo_color = Color(1, 0.615686, 1, 1)
 material = SubResource("StandardMaterial3D_oyvna")
 size = Vector3(0.25, 0.25, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bfgsh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wgh0h"]
 viewport_path = NodePath("SubViewport")
 
 [node name="BillyBob" type="CharacterBody3D"]
@@ -44,4 +44,14 @@ script = ExtResource("3_lgnv7")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_bfgsh")
+texture = SubResource("ViewportTexture_wgh0h")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WanderTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true

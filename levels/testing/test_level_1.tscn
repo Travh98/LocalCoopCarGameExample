@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://uyotdfaa8g3t"]
+[gd_scene load_steps=8 format=3 uid="uid://uyotdfaa8g3t"]
 
 [ext_resource type="PackedScene" uid="uid://kofqb4ifngxh" path="res://props/platform.tscn" id="1_1xova"]
 [ext_resource type="PackedScene" uid="uid://qwl4j87quflh" path="res://entities/billy_bob/billy_bob.tscn" id="2_vdla8"]
+[ext_resource type="PackedScene" uid="uid://udtf8yb2e5n2" path="res://entities/leaping_larry/leaping_larry.tscn" id="3_1j4c7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
 sky_top_color = Color(0.298039, 0.556863, 0.87451, 1)
@@ -24,6 +25,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="BillyBob" parent="." instance=ExtResource("2_vdla8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984498, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.717543, -0.410853, 0.562433, 0, 0.807497, 0.589871, -0.696514, -0.423258, 0.579415, 5.81764, 5.58282, 5.54252)
@@ -44,3 +46,6 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 
 
 [node name="Platform2" parent="NavigationRegion3D" instance=ExtResource("1_1xova")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1, 0)
+
+[node name="LeapingLarry" parent="." instance=ExtResource("3_1j4c7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649167, -2.0097)
