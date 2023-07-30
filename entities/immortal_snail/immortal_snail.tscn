@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4a4p5to0obr5"]
+
+[ext_resource type="Script" path="res://entities/immortal_snail/immortal_snail.gd" id="1_2qh64"]
+[ext_resource type="PackedScene" uid="uid://blfr0hvvva7do" path="res://entities/immortal_snail/snail_vis.tscn" id="1_aiqw1"]
+[ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_v8mbv"]
+[ext_resource type="Script" path="res://components/health_component/health_component.gd" id="4_dk3sj"]
+[ext_resource type="Script" path="res://entities/immortal_snail/immortal_snail_fsm.gd" id="5_ax1dd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rrtw1"]
+height = 0.200861
+radius = 0.121368
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mdg8n"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ytlup"]
+radius = 100.0
+
+[node name="ImmortalSnail" type="CharacterBody3D"]
+script = ExtResource("1_2qh64")
+
+[node name="snail" parent="." instance=ExtResource("1_aiqw1")]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="snail/Armature" index="0"]
+bones/2/rotation = Quaternion(0.0107666, -0.0389574, -0.0946296, 0.994692)
+bones/6/rotation = Quaternion(-0.780682, 0.0765514, 0.0996232, 0.612169)
+
+[node name="Shell" parent="snail/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, -4.09273e-12, 3.82272e-12, -3.75167e-12, 1, -5.06639e-07, -5.27223e-12, -5.21541e-07, 1, -1.35003e-13, -8.9407e-08, 2.06062e-07)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100549, 0)
+shape = SubResource("CylinderShape3D_rrtw1")
+
+[node name="DevInfoTag3D" parent="." instance=ExtResource("3_v8mbv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815905, 0)
+texture = SubResource("ViewportTexture_mdg8n")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_dk3sj")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_ax1dd")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WanderTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TryFindTargetTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_ytlup")
+
+[editable path="snail"]

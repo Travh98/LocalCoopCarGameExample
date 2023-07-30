@@ -28,7 +28,7 @@ func _ready():
 
 
 func apply_gravity(delta):
-	if 
+#	if 
 	apply_central_force(-Vector3.UP * gravity * delta)
 
 
@@ -112,7 +112,7 @@ func rotate_towards_motion_no_y(delta: float):
 
 
 func is_on_floor():
-	var space_state = get_world_2d().direct_space_state
+	var space_state = get_world_3d().direct_space_state
 	# use global coordinates, not local to node
 	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, -1.5, 0))
 	var result = space_state.intersect_ray(query)

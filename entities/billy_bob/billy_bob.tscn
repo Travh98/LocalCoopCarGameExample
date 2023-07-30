@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://qwl4j87quflh"]
+[gd_scene load_steps=11 format=3 uid="uid://qwl4j87quflh"]
 
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob.gd" id="1_asqm7"]
 [ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="1_trc1s"]
+[ext_resource type="Material" uid="uid://ghmbrtmasmiw" path="res://assets/materials/endesga_detail_mat.tres" id="2_x8v88"]
 [ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_5xlna"]
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob_fsm.gd" id="3_lgnv7"]
 
@@ -17,7 +18,7 @@ albedo_color = Color(1, 0.615686, 1, 1)
 material = SubResource("StandardMaterial3D_oyvna")
 size = Vector3(0.25, 0.25, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wgh0h"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_t4e47"]
 viewport_path = NodePath("SubViewport")
 
 [node name="BillyBob" type="CharacterBody3D"]
@@ -30,6 +31,7 @@ shape = SubResource("CylinderShape3D_73hmw")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CylinderMesh_td5kj")
+surface_material_override/0 = ExtResource("2_x8v88")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70676, -0.293466)
@@ -44,7 +46,7 @@ script = ExtResource("3_lgnv7")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_wgh0h")
+texture = SubResource("ViewportTexture_t4e47")
 
 [node name="Timers" type="Node" parent="."]
 

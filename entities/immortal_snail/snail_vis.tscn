@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://blfr0hvvva7do"]
+
+[ext_resource type="PackedScene" uid="uid://qmejmp67lh0f" path="res://entities/immortal_snail/snail.glb" id="1_qsahl"]
+[ext_resource type="Material" uid="uid://ghmbrtmasmiw" path="res://assets/materials/endesga_detail_mat.tres" id="2_72jdr"]
+
+[node name="snail" instance=ExtResource("1_qsahl")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/2/rotation = Quaternion(0.00332998, -2.84691e-14, -3.96964e-09, 0.999994)
+
+[node name="Shell" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, -4.09273e-12, 3.82272e-12, -3.75167e-12, 1, -5.06639e-07, -5.27223e-12, -5.21541e-07, 1, -1.35003e-13, -8.9407e-08, 2.06062e-07)
+bone_idx = 5
+
+[node name="Shell" parent="Armature/Skeleton3D/Shell" index="0"]
+surface_material_override/0 = ExtResource("2_72jdr")
+
+[node name="SnailMesh" parent="Armature/Skeleton3D" index="1"]
+surface_material_override/0 = ExtResource("2_72jdr")

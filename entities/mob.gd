@@ -1,4 +1,4 @@
-class_name Mob
+class_name ChMob
 extends CharacterBody3D
 
 ## Base Mob class using CharacterBody3D

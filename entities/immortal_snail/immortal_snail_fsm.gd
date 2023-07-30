@@ -4,6 +4,10 @@ var mob: ChMob
 var rand_gen: RandomNumberGenerator
 var follow_target: Node3D = null
 @onready var nav_agent: NavigationAgent3D = $"../NavigationAgent3D"
+@onready var anim_player: AnimationPlayer = $"../snail/AnimationPlayer"
+
+@onready var try_find_target_timer: Timer = $"../Timers/TryFindTargetTimer"
+@onready var detection_area: Area3D = $"../DetectionArea"
 
 @onready var wander_timer: Timer = $"../Timers/WanderTimer" 
 var wander_target: Vector3
@@ -29,6 +33,13 @@ func _ready():
 
 func _state_logic(delta):
 	mob.apply_gravity(delta)
+	
+	# If we don't have our follow target, try finding every x seconds
+	if follow_target == null:
+		if try_find_target_timer.time_left <= 0:
+			try_find_target_timer.start()
+			find_follow_target()
+	
 	if state == states.wander:
 		mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
 		
@@ -39,6 +50,7 @@ func _state_logic(delta):
 		nav_agent.target_position = follow_target.global_position
 		mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
 		
+	mob.rotate_towards_motion_no_y(delta)
 	mob.accelerate(delta)
 	mob.apply_movement()
 
@@ -64,6 +76,7 @@ func _enter_state(_new_state, _previous_state):
 	
 	match state:
 		states.wander:
+			anim_player.play("Walk")
 			wander_timer.start()
 			# Get a random x and z around the mob
 			var wander_x_relative: float = rand_gen.randf_range(wander_min_distance, wander_max_distance)
@@ -80,6 +93,7 @@ func _enter_state(_new_state, _previous_state):
 			nav_agent.target_position = wander_target
 			
 		states.pause:
+			anim_player.stop()
 			# Update the wait time with random variance, keeping within range
 			pause_timer.wait_time = \
 				clampf(rand_gen.randf_range(pause_timer.wait_time - pause_time_variance, 
@@ -88,6 +102,7 @@ func _enter_state(_new_state, _previous_state):
 			pause_timer.start()
 			
 		states.follow:
+			anim_player.play("Walk")
 			mob.direction = mob.global_position.direction_to(follow_target.global_position)
 			
 		_:
@@ -96,3 +111,10 @@ func _enter_state(_new_state, _previous_state):
 
 func _exit_state(_old_state, _new_state):
 	pass
+
+func find_follow_target():
+	for n in detection_area.get_overlapping_bodies():
+		if n.name == "LeapingLarry":
+			follow_target = n
+			print("Snail found follow target: ", n)
+			return
