@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbfyacj1gvauk"
-path.s3tc="res://.godot/imported/light_random_noise_16px.png-1d7713af1290e2e0b765af09ab524124.s3tc.ctex"
+path.s3tc="res://.godot/imported/light_random_noise_16px.png-580ac4950a319585f8d6138dd942e529.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://entities/immortal_snail/light_random_noise_16px.png"
-dest_files=["res://.godot/imported/light_random_noise_16px.png-1d7713af1290e2e0b765af09ab524124.s3tc.ctex"]
+source_file="res://assets/materials/light_random_noise_16px.png"
+dest_files=["res://.godot/imported/light_random_noise_16px.png-580ac4950a319585f8d6138dd942e529.s3tc.ctex"]
 
 [params]
 

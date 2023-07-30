@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://icqpceed0q02"
-path.s3tc="res://.godot/imported/snail_endesga-32-1x.png-1dea8d5c6ded631231052971f0e6bfbf.s3tc.ctex"
+uid="uid://d1sqr8jy1x2s0"
+path.s3tc="res://.godot/imported/random_noise_64px.png-bd548060f52e16a3713a34d5936a41e4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://entities/immortal_snail/snail_endesga-32-1x.png"
-dest_files=["res://.godot/imported/snail_endesga-32-1x.png-1dea8d5c6ded631231052971f0e6bfbf.s3tc.ctex"]
+source_file="res://assets/materials/random_noise_64px.png"
+dest_files=["res://.godot/imported/random_noise_64px.png-bd548060f52e16a3713a34d5936a41e4.s3tc.ctex"]
 
 [params]
 
