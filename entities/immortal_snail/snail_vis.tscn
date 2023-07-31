@@ -6,11 +6,13 @@
 [node name="snail" instance=ExtResource("1_qsahl")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/2/rotation = Quaternion(0.00332998, -2.84691e-14, -3.96964e-09, 0.999994)
+bones/2/rotation = Quaternion(-0.0177783, -0.00182177, -0.00456179, 0.99983)
+bones/3/rotation = Quaternion(0.0231906, 0.0505321, 4.13105e-05, 0.998453)
+bones/7/rotation = Quaternion(-0.7869, 0.00347065, 0.00434354, 0.617055)
 
 [node name="Shell" parent="Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, -4.09273e-12, 3.82272e-12, -3.75167e-12, 1, -5.06639e-07, -5.27223e-12, -5.21541e-07, 1, -1.35003e-13, -8.9407e-08, 2.06062e-07)
-bone_idx = 5
+bone_idx = 6
 
 [node name="Shell" parent="Armature/Skeleton3D/Shell" index="0"]
 surface_material_override/0 = ExtResource("2_72jdr")

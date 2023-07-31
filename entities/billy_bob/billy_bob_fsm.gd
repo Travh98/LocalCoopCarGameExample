@@ -4,6 +4,9 @@ var mob: ChMob
 var rand_gen: RandomNumberGenerator
 var follow_target: Node3D = null
 @onready var nav_agent: NavigationAgent3D = $"../NavigationAgent3D"
+@onready var detection_area: Area3D = $"../DetectionArea"
+@onready var bump_area: Area3D = $"../BumpArea"
+var item_target: Node3D = null
 
 @onready var wander_timer: Timer = $"../Timers/WanderTimer" 
 var wander_target: Vector3
@@ -15,9 +18,13 @@ var wander_min_distance: float = 2.0
 var pause_time: float = 0.5
 var pause_time_variance: float = 0.1
 
+@onready var scan_for_items_timer: Timer = $"../Timers/ScanForItemsTimer"
+
 func _ready():
 	rand_gen = RandomNumberGenerator.new()
-	randomize()
+	rand_gen.randomize()
+	
+	bump_area.body_entered.connect(on_bump_area_body_entered)
 	
 	mob = get_parent()
 	
@@ -25,7 +32,9 @@ func _ready():
 	add_state("wander")
 	add_state("pause")
 	add_state("follow")
+	add_state("move_to_item")
 	call_deferred("set_state", states.wander)
+
 
 func _state_logic(delta):
 	mob.apply_gravity(delta)
@@ -38,9 +47,22 @@ func _state_logic(delta):
 	if state == states.follow:
 		nav_agent.target_position = follow_target.global_position
 		mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
+	
+	if state == states.move_to_item:
+		if item_target != null:
+			nav_agent.target_position = item_target.global_position
+			mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
 		
+	mob.rotate_towards_motion_no_y(delta)
 	mob.accelerate(delta)
 	mob.apply_movement()
+	
+	# Scan for items every x seconds if we don't have a item target
+	if item_target == null:
+		if scan_for_items_timer.time_left <= 0:
+			scan_for_item_target()
+			scan_for_items_timer.start()
+
 
 func _get_transition(_delta):
 	match state:
@@ -50,6 +72,8 @@ func _get_transition(_delta):
 				return states.pause
 		states.pause:
 			if pause_timer.time_left <= 0:
+				if item_target != null:
+					return states.move_to_item
 				if follow_target != null:
 					return states.follow
 				else:
@@ -57,7 +81,11 @@ func _get_transition(_delta):
 		states.follow:
 			if follow_target == null:
 				return states.pause
+		states.move_to_item:
+			if item_target == null:
+				return states.pause
 	return null
+
 
 func _enter_state(_new_state, _previous_state):
 	state_changed.emit(states.keys()[_new_state])
@@ -88,11 +116,36 @@ func _enter_state(_new_state, _previous_state):
 			pause_timer.start()
 			
 		states.follow:
-			mob.direction = mob.global_position.direction_to(follow_target.global_position)
-			
+			pass
+		states.move_to_item:
+			pass
 		_:
 			pass
 	pass
 
+
 func _exit_state(_old_state, _new_state):
 	pass
+
+
+func scan_for_item_target():
+	var found_item: Node3D = null
+	for n in detection_area.get_overlapping_bodies():
+		if n is FoodItem:
+			if found_item == null:
+				found_item = n
+			else:
+				# Find the closest item
+				if mob.global_position.distance_to(n.global_position) \
+				< mob.global_position.distance_to(found_item.global_position):
+					found_item = n
+	item_target = found_item
+	return
+
+
+func on_bump_area_body_entered(body: Node3D):
+	if body == item_target:
+		var item = item_target
+		item_target = null
+		item.queue_free()
+		

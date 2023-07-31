@@ -6,7 +6,7 @@ extends RigidBody3D
 ## All mobs will inherit from this, handles basic living being components
 
 # Movement Variables
-var gravity_multiplier := 3.0
+var gravity_multiplier := 10.0
 var speed: float = 3
 var acceleration: float = 8
 var deceleration: float = 10
@@ -20,16 +20,26 @@ var direction := Vector3()
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
+@onready var ground_check: RayCast3D = $GroundCheck
+var rolling_ground_check_array: Array[bool]
+var rolling_ground_check_size: int = 1
+
 
 func _ready():
 	health_component.health_died.connect(on_death)
 	nav_agent.velocity_computed.connect(on_nav_velocity_computed)
+	gravity_scale = 0
+	
 	print("Creating class RbMob")
 
 
+func _integrate_forces(state):
+	pass
+
+
 func apply_gravity(delta):
-#	if 
-	apply_central_force(-Vector3.UP * gravity * delta)
+	if !is_on_floor():
+		apply_central_force(-Vector3.UP * gravity * delta)
 
 
 func apply_movement():
@@ -112,11 +122,26 @@ func rotate_towards_motion_no_y(delta: float):
 
 
 func is_on_floor():
-	var space_state = get_world_3d().direct_space_state
-	# use global coordinates, not local to node
-	var query = PhysicsRayQueryParameters3D.create(Vector3(0, 0, 0), Vector3(0, -1.5, 0))
-	var result = space_state.intersect_ray(query)
-	if result:
-		return true
+	# Check if ground raycast is hitting floor this frame
+	ground_check.enabled = true
+	ground_check.force_raycast_update()
+	var result: bool = false
+	if ground_check.is_colliding():
+		result = true
 	else:
-		return false
+		result = false
+	ground_check.enabled = false
+	
+	# Store this frame's result in an array
+	rolling_ground_check_array.append(result)
+	if rolling_ground_check_array.size() > rolling_ground_check_size:
+		rolling_ground_check_array.pop_front()
+	
+	# If any of the last frames were on the ground, return true
+	var is_grounded: bool = false
+	for b in rolling_ground_check_array:
+		if b == true:
+			is_grounded = true
+	print("On ground: ", is_grounded, " from ", rolling_ground_check_array.size(), " frames")
+	
+	return is_grounded

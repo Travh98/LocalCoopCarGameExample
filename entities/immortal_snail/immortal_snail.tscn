@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4a4p5to0obr5"]
+[gd_scene load_steps=10 format=3 uid="uid://c4a4p5to0obr5"]
 
 [ext_resource type="Script" path="res://entities/immortal_snail/immortal_snail.gd" id="1_2qh64"]
 [ext_resource type="PackedScene" uid="uid://blfr0hvvva7do" path="res://entities/immortal_snail/snail_vis.tscn" id="1_aiqw1"]
 [ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_v8mbv"]
+[ext_resource type="PackedScene" uid="uid://rmo8gcw0nt8k" path="res://components/googly_eye/googly_eye.tscn" id="3_vl8gh"]
 [ext_resource type="Script" path="res://components/health_component/health_component.gd" id="4_dk3sj"]
 [ext_resource type="Script" path="res://entities/immortal_snail/immortal_snail_fsm.gd" id="5_ax1dd"]
 
@@ -10,7 +11,7 @@
 height = 0.200861
 radius = 0.121368
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mdg8n"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_855tp"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ytlup"]
@@ -23,11 +24,29 @@ script = ExtResource("1_2qh64")
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="snail/Armature" index="0"]
-bones/2/rotation = Quaternion(0.0107666, -0.0389574, -0.0946296, 0.994692)
-bones/6/rotation = Quaternion(-0.780682, 0.0765514, 0.0996232, 0.612169)
+bones/2/rotation = Quaternion(-0.0171998, 0.00424971, 0.0106594, 0.999786)
+bones/3/rotation = Quaternion(0.0398185, -2.09791e-05, 8.84749e-06, 0.999207)
+bones/4/rotation = Quaternion(-0.131854, 0.0892107, -0.126148, 0.979154)
+bones/5/rotation = Quaternion(-0.13245, -0.0905324, 0.121957, 0.979483)
 
 [node name="Shell" parent="snail/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, -4.09273e-12, 3.82272e-12, -3.75167e-12, 1, -5.06639e-07, -5.27223e-12, -5.21541e-07, 1, -1.35003e-13, -8.9407e-08, 2.06062e-07)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="snail/Armature/Skeleton3D" index="2"]
+transform = Transform3D(0.949568, -0.237041, -0.205263, 0.193915, 0.958352, -0.209649, 0.24641, 0.159272, 0.955989, -0.349238, 2.03403, 2.03671)
+bone_name = "EyeRight"
+bone_idx = 5
+
+[node name="GooglyEye" parent="snail/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("3_vl8gh")]
+transform = Transform3D(0.48711, -0.0315505, 0.108296, -0.00213944, 0.477372, 0.148698, -0.112778, -0.145328, 0.464931, 0.0469109, 0.647589, 0.0781577)
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="snail/Armature/Skeleton3D" index="3"]
+transform = Transform3D(0.956241, 0.201329, 0.212294, -0.158652, 0.966463, -0.201923, -0.245828, 0.159406, 0.956116, 0.292266, 2.04875, 2.03696)
+bone_name = "EyeLeft"
+bone_idx = 4
+
+[node name="GooglyEye" parent="snail/Armature/Skeleton3D/BoneAttachment3D2" instance=ExtResource("3_vl8gh")]
+transform = Transform3D(0.48711, -0.0315505, 0.108296, -0.00213943, 0.477372, 0.148698, -0.112778, -0.145328, 0.464931, 0.0143923, 0.644283, 0.0696809)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100549, 0)
@@ -35,7 +54,7 @@ shape = SubResource("CylinderShape3D_rrtw1")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_v8mbv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815905, 0)
-texture = SubResource("ViewportTexture_mdg8n")
+texture = SubResource("ViewportTexture_855tp")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 

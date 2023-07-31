@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://uyotdfaa8g3t"]
+[gd_scene load_steps=12 format=3 uid="uid://uyotdfaa8g3t"]
 
 [ext_resource type="PackedScene" uid="uid://kofqb4ifngxh" path="res://props/platform.tscn" id="1_1xova"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_ju8sk"]
 [ext_resource type="PackedScene" uid="uid://qwl4j87quflh" path="res://entities/billy_bob/billy_bob.tscn" id="2_vdla8"]
 [ext_resource type="PackedScene" uid="uid://udtf8yb2e5n2" path="res://entities/leaping_larry/leaping_larry.tscn" id="3_1j4c7"]
+[ext_resource type="PackedScene" uid="uid://ctxdy7uebc5tr" path="res://props/small_platform.tscn" id="4_4vukh"]
 [ext_resource type="PackedScene" uid="uid://c4a4p5to0obr5" path="res://entities/immortal_snail/immortal_snail.tscn" id="4_ik0c5"]
+[ext_resource type="PackedScene" uid="uid://cdxx05jtrpgu1" path="res://entities/food/banana/banana.tscn" id="7_81fgy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
 sky_top_color = Color(0.298039, 0.556863, 0.87451, 1)
@@ -16,17 +19,15 @@ background_mode = 2
 sky = SubResource("Sky_uoail")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wgitf"]
-vertices = PackedVector3Array(4.5, 0.910542, -14.5, -4.5, 0.910542, -14.5, -4.5, 0.910542, -7.5, 4.5, 0.910542, -4.75, -4.5, 0.410542, 6.75, -4.5, -1.58946, 14, 4.5, -1.58946, 14, 4.75, 0.910542, 4.75, 4.5, 0.910542, -4.75, -4.5, 0.910542, -7.5, -4.5, 0.910542, -0.25, 4.75, 0.910542, 4.75, 4.5, 0.910542, -4.75, -4.5, 0.910542, -0.25, -4.5, 0.410542, 6.75, -4.5, 0.910542, 3.95, 5.75, -0.089458, -4.5, 5.75, -0.089458, 4.5, 14.5, -0.089458, 4.5, 14.5, -0.089458, -4.5)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(14, 15, 11), PackedInt32Array(11, 15, 13), PackedInt32Array(11, 13, 12), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17)]
+vertices = PackedVector3Array(-4.5, 0.910542, -5.25, -4.25, 0.910542, -4.5, -3.25, 0.910542, -4.25, 4.5, 0.910542, -4.75, 4.5, 0.910542, -14.5, -4.5, 0.910542, -14.5, 4.5, 0.910542, -4.75, -3.25, 0.910542, -4.25, -3.25, 1.16054, -3.5, -3.25, 1.16054, -3.25, -3.25, 0.910542, -2.5, 4.75, 0.910542, -2.5, 4.5, 0.910542, -4.75, -14.5, 1.41054, 4.5, -5.5, 1.41054, 4.5, -5.5, 1.41054, -3, -14.5, 1.41054, -4.5, -3.25, 1.16054, -3.25, 4.5, 0.910542, -4.75, -3.25, 1.16054, -3.5, -3.25, 1.16054, -3.25, -3.25, 1.16054, -3.5, -5.25, 1.41054, -3.5, -5.5, 1.41054, -3, -5.5, 1.41054, -4.5, -14.5, 1.41054, -4.5, -5.5, 1.41054, -3, -5.25, 1.41054, -3.5, 5.75, -0.089458, -4.5, 5.75, -0.089458, 4.5, 14.5, -0.089458, 4.5, 14.5, -0.089458, -4.5, -3.25, 0.910542, -2.5, -4.25, 0.910542, -2.25, -4.5, 0.660542, 5.75, 4.5, 0.660542, 5.75, 4.75, 0.910542, -2.5, -4.5, 0.660542, 5.75, -4.5, -1.58946, 14, 4.5, -1.58946, 14, 4.5, 0.660542, 5.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 5), PackedInt32Array(3, 5, 4), PackedInt32Array(8, 7, 6), PackedInt32Array(9, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(19, 18, 17), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(27, 26, 24), PackedInt32Array(24, 26, 25), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(35, 32, 36), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38)]
 
 [node name="TestLevel1" type="Node3D"]
+script = ExtResource("1_ju8sk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="BillyBob" parent="." instance=ExtResource("2_vdla8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984498, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.717543, -0.410854, 0.562433, 0, 0.807497, 0.589871, -0.696514, -0.423258, 0.579414, 5.81764, 5.58282, 5.54252)
@@ -39,6 +40,9 @@ navigation_mesh = SubResource("NavigationMesh_wgitf")
 
 [node name="Platform" parent="NavigationRegion3D" instance=ExtResource("1_1xova")]
 
+[node name="Platform5" parent="NavigationRegion3D" instance=ExtResource("1_1xova")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.64106, 0)
+
 [node name="Platform3" parent="NavigationRegion3D" instance=ExtResource("1_1xova")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
@@ -48,8 +52,29 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 
 [node name="Platform2" parent="NavigationRegion3D" instance=ExtResource("1_1xova")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1, 0)
 
+[node name="SmallPlatform" parent="NavigationRegion3D" instance=ExtResource("4_4vukh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.58309, 0.617806, -3.44614)
+
+[node name="SmallPlatform2" parent="NavigationRegion3D" instance=ExtResource("4_4vukh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02936, 0.808571, -3.44614)
+
+[node name="SmallPlatform3" parent="NavigationRegion3D" instance=ExtResource("4_4vukh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.60587, 0.972129, -3.44614)
+
+[node name="BillyBob" parent="." instance=ExtResource("2_vdla8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984498, 0)
+
 [node name="LeapingLarry" parent="." instance=ExtResource("3_1j4c7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.649167, -2.0097)
 
 [node name="ImmortalSnail" parent="." instance=ExtResource("4_ik0c5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74388, 0.66081, -3.85504)
+
+[node name="Banana2" parent="." instance=ExtResource("7_81fgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09178, 0.989581, -0.813508)
+
+[node name="Banana3" parent="." instance=ExtResource("7_81fgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15929, 0.989581, -7.05405)
+
+[node name="Banana" parent="." instance=ExtResource("7_81fgy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3393, 1.86632, -2.48766)

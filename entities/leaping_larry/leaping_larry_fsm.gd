@@ -17,7 +17,7 @@ var pause_time_variance: float = 0.1
 
 func _ready():
 	rand_gen = RandomNumberGenerator.new()
-	randomize()
+	rand_gen.randomize()
 	
 	mob = get_parent()
 	

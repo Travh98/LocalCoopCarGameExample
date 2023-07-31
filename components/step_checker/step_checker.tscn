@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dexa6jq6wkuuy"]
+
+[ext_resource type="Script" path="res://components/step_checker/step_checker.gd" id="1_5j5dr"]
+
+[node name="StepChecker" type="Node3D"]
+script = ExtResource("1_5j5dr")
+
+[node name="WallCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1)
+
+[node name="FloorCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CeilingCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+target_position = Vector3(0, 1, 0)

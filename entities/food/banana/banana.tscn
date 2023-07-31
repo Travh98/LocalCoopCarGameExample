@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdxx05jtrpgu1"]
+
+[ext_resource type="Script" path="res://entities/food/banana/food_item.gd" id="1_jl41v"]
+[ext_resource type="PackedScene" uid="uid://dsgkwofryd4i4" path="res://entities/food/banana/banana_vis.tscn" id="1_ryjnv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hd3bo"]
+height = 1.17656
+radius = 0.17062
+
+[node name="Banana" type="RigidBody3D"]
+script = ExtResource("1_jl41v")
+
+[node name="banana" parent="." instance=ExtResource("1_ryjnv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_hd3bo")

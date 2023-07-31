@@ -15,7 +15,7 @@ albedo_color = Color(0.929412, 0.615686, 0.317647, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_nk02b"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_e0u72"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_e5pws"]
 viewport_path = NodePath("SubViewport")
 
 [node name="LeapingLarry" type="RigidBody3D"]
@@ -43,7 +43,7 @@ script = ExtResource("2_4750a")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("2_1cuht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.47934, 0)
-texture = SubResource("ViewportTexture_e0u72")
+texture = SubResource("ViewportTexture_e5pws")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -54,3 +54,7 @@ one_shot = true
 [node name="PauseTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
+
+[node name="GroundCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.1, 0)
+hit_from_inside = true

@@ -6,6 +6,9 @@ extends Control
 @onready var state_label: Label = $VBoxContainer/StateLabel
 @onready var info_label: Label = $VBoxContainer/InfoLabel
 
+func _ready():
+	set_name_label(get_parent().name)
+
 func set_name_label(name_string: String):
 	name_label.text = name_string
 

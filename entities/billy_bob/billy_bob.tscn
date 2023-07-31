@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://qwl4j87quflh"]
+[gd_scene load_steps=14 format=3 uid="uid://qwl4j87quflh"]
 
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob.gd" id="1_asqm7"]
 [ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="1_trc1s"]
 [ext_resource type="Material" uid="uid://ghmbrtmasmiw" path="res://assets/materials/endesga_detail_mat.tres" id="2_x8v88"]
 [ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_5xlna"]
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob_fsm.gd" id="3_lgnv7"]
+[ext_resource type="PackedScene" uid="uid://rmo8gcw0nt8k" path="res://components/googly_eye/googly_eye.tscn" id="6_rrvfk"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_73hmw"]
 
@@ -18,8 +19,14 @@ albedo_color = Color(1, 0.615686, 1, 1)
 material = SubResource("StandardMaterial3D_oyvna")
 size = Vector3(0.25, 0.25, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_t4e47"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ljts2"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2dkdk"]
+radius = 10.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2owj5"]
+radius = 0.6
 
 [node name="BillyBob" type="CharacterBody3D"]
 script = ExtResource("1_asqm7")
@@ -34,7 +41,7 @@ mesh = SubResource("CylinderMesh_td5kj")
 surface_material_override/0 = ExtResource("2_x8v88")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70676, -0.293466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60693, -0.293466)
 mesh = SubResource("BoxMesh_b1epm")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -46,7 +53,7 @@ script = ExtResource("3_lgnv7")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_t4e47")
+texture = SubResource("ViewportTexture_ljts2")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -57,3 +64,24 @@ one_shot = true
 [node name="PauseTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
+
+[node name="ScanForItemsTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="GooglyEye" parent="." instance=ExtResource("6_rrvfk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.185159, 1.85841, -0.501462)
+
+[node name="GooglyEye2" parent="." instance=ExtResource("6_rrvfk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.157795, 1.85841, -0.501462)
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_2dkdk")
+
+[node name="BumpArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BumpArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_2owj5")
