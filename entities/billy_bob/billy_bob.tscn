@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://qwl4j87quflh"]
+[gd_scene load_steps=15 format=3 uid="uid://qwl4j87quflh"]
 
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob.gd" id="1_asqm7"]
 [ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="1_trc1s"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="3_5xlna"]
 [ext_resource type="Script" path="res://entities/billy_bob/billy_bob_fsm.gd" id="3_lgnv7"]
 [ext_resource type="PackedScene" uid="uid://rmo8gcw0nt8k" path="res://components/googly_eye/googly_eye.tscn" id="6_rrvfk"]
+[ext_resource type="PackedScene" uid="uid://dexa6jq6wkuuy" path="res://components/step_checker/step_checker.tscn" id="7_iqmue"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_73hmw"]
 
@@ -19,7 +20,7 @@ albedo_color = Color(1, 0.615686, 1, 1)
 material = SubResource("StandardMaterial3D_oyvna")
 size = Vector3(0.25, 0.25, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8yv6i"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tjauc"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2dkdk"]
@@ -53,7 +54,7 @@ script = ExtResource("3_lgnv7")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_8yv6i")
+texture = SubResource("ViewportTexture_tjauc")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -85,3 +86,6 @@ shape = SubResource("SphereShape3D_2dkdk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BumpArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_2owj5")
+
+[node name="StepChecker" parent="." instance=ExtResource("7_iqmue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

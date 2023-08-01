@@ -6,7 +6,7 @@ extends ChMob
 
 
 func _ready():
-	speed = 0.25
+	move_speed = 0.25
 	dev_info_tag.set_name_label(name)
 	state_machine.state_changed.connect(dev_info_tag.set_state_label)
 	super() # Call base class ready

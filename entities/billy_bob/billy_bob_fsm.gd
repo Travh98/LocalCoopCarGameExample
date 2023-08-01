@@ -7,6 +7,7 @@ var follow_target: Node3D = null
 @onready var detection_area: Area3D = $"../DetectionArea"
 @onready var bump_area: Area3D = $"../BumpArea"
 var item_target: Node3D = null
+@onready var step_checker: StepChecker = $"../StepChecker"
 
 @onready var wander_timer: Timer = $"../Timers/WanderTimer" 
 var wander_target: Vector3
@@ -37,7 +38,6 @@ func _ready():
 
 
 func _state_logic(delta):
-	mob.apply_gravity(delta)
 	if state == states.wander:
 		mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
 		
@@ -52,10 +52,11 @@ func _state_logic(delta):
 		if item_target != null:
 			nav_agent.target_position = item_target.global_position
 			mob.direction = mob.global_position.direction_to(nav_agent.get_next_path_position()).normalized()
-		
+	
 	mob.rotate_towards_motion_no_y(delta)
 	mob.accelerate(delta)
 	mob.apply_movement()
+	handle_step(delta)
 	
 	# Scan for items every x seconds if we don't have a item target
 	if item_target == null:
@@ -149,3 +150,19 @@ func on_bump_area_body_entered(body: Node3D):
 		item_target = null
 		item.queue_free()
 		
+
+func handle_step(delta: float):
+	var desired_step_to_global_y: float = step_checker.can_step(mob.direction, delta).y
+	if desired_step_to_global_y == 0:
+		if not mob.is_on_floor():
+			mob.apply_gravity(delta)
+	else:
+		var desired_step_to_relative_y: float = desired_step_to_global_y - mob.global_position.y
+		if desired_step_to_relative_y > 0 and desired_step_to_relative_y < step_checker.step_height:
+			desired_step_to_relative_y = step_checker.step_height
+			# TODO do we really need step_height if we have the wall_check?
+		mob.velocity.y = desired_step_to_relative_y * mob.move_speed * 2
+		# Disable gravity if we are stepping up
+		if desired_step_to_relative_y <= 0:
+			if not mob.is_on_floor():
+				mob.apply_gravity(delta)

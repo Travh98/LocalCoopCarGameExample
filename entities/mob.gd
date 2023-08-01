@@ -7,7 +7,7 @@ extends CharacterBody3D
 
 # Movement Variables
 var gravity_multiplier := 3.0
-var speed: float = 3
+var move_speed: float = 3
 var acceleration: float = 8
 var deceleration: float = 10
 var jump_height: float = 10
@@ -47,7 +47,7 @@ func apply_nav_agent_velocity():
 	var current_location = global_transform.origin
 	var next_location = nav_agent.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized()
-	nav_agent.set_velocity(new_velocity * speed)
+	nav_agent.set_velocity(new_velocity * move_speed)
 
 
 func accelerate(delta: float) -> void:
@@ -56,7 +56,7 @@ func accelerate(delta: float) -> void:
 	temp_vel.y = 0
 	
 	var temp_accel: float
-	var target: Vector3 = direction * speed
+	var target: Vector3 = direction * move_speed
 	
 	if direction.dot(temp_vel) > 0:
 		temp_accel = acceleration

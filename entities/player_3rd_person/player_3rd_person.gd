@@ -46,25 +46,7 @@ func _physics_process(delta):
 	handle_move_input()
 	handle_sprint_input()
 	
-	# Get desired direction from input
-	var input_axis: Vector2 = Input.get_vector(&"move_backward", &"move_forward",
-			&"move_left", &"move_right")
-	var forward: Vector3 = -global_transform.basis.z.normalized()
-	var desired_direction: Vector3 = forward * input_axis.x + forward.cross(Vector3.UP) * input_axis.y
-	
-	var step_to_pos: Vector3 = step_checker.can_step(desired_direction, delta)
-	if step_to_pos != Vector3.ZERO:
-		desired_y_pos = step_to_pos.y - global_position.y
-		if desired_y_pos > 0 and desired_y_pos < step_checker.step_height:
-			desired_y_pos = step_checker.step_height
-	else:
-		desired_y_pos = 0
-	velocity.y = desired_y_pos * move_speed
-	print("Desired y offset height: ", desired_y_pos)
-	
-	if desired_y_pos <= 0:
-		if not is_on_floor():
-			apply_gravity(delta)
+	apply_step_and_gravity(delta)
 	
 	accelerate(delta)
 	
@@ -102,6 +84,30 @@ func apply_movement():
 
 func apply_jump():
 	velocity.y = jump_height
+
+
+func apply_step_and_gravity(delta: float):
+	# Get desired direction from input
+	var input_axis: Vector2 = Input.get_vector(&"move_backward", &"move_forward",
+			&"move_left", &"move_right")
+	var forward: Vector3 = -global_transform.basis.z.normalized()
+	var desired_direction: Vector3 = forward * input_axis.x + forward.cross(Vector3.UP) * input_axis.y
+	
+	var step_to_pos: Vector3 = step_checker.can_step(desired_direction, delta)
+	if step_to_pos != Vector3.ZERO:
+		desired_y_pos = step_to_pos.y - global_position.y
+		if desired_y_pos > 0 and desired_y_pos < step_checker.step_height:
+			desired_y_pos = step_checker.step_height
+			# TODO do we really need step_height if we have the wall_check?
+	else:
+		desired_y_pos = 0
+	velocity.y = desired_y_pos * move_speed * 2
+#	print("Desired y offset height: ", desired_y_pos)
+	
+	# Disable gravity if we are stepping up
+	if desired_y_pos <= 0:
+		if not is_on_floor():
+			apply_gravity(delta)
 
 
 func accelerate(delta: float) -> void:
