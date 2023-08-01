@@ -142,6 +142,6 @@ func is_on_floor():
 	for b in rolling_ground_check_array:
 		if b == true:
 			is_grounded = true
-	print("On ground: ", is_grounded, " from ", rolling_ground_check_array.size(), " frames")
+#	print("On ground: ", is_grounded, " from ", rolling_ground_check_array.size(), " frames")
 	
 	return is_grounded
