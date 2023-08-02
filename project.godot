@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Aug 2023"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [gui]
 
 theme/custom_font="res://assets/fonts/press-start-2p/PressStart2P.ttf"

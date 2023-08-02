@@ -101,7 +101,7 @@ func apply_step_and_gravity(delta: float):
 			# TODO do we really need step_height if we have the wall_check?
 	else:
 		desired_y_pos = 0
-	velocity.y = desired_y_pos * move_speed * 2
+	velocity.y = desired_y_pos * move_speed * 3
 #	print("Desired y offset height: ", desired_y_pos)
 	
 	# Disable gravity if we are stepping up

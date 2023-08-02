@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://boo4pf68mgkn4"]
+
+[ext_resource type="Script" path="res://entities/mob.gd" id="1_fpswe"]
+[ext_resource type="PackedScene" uid="uid://d1p8wsfqgiaeu" path="res://entities/hazmat_soldier/hazmat_soldier.glb" id="2_t8qi5"]
+[ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="3_klnvt"]
+[ext_resource type="PackedScene" uid="uid://dexa6jq6wkuuy" path="res://components/step_checker/step_checker.tscn" id="4_e0jtx"]
+[ext_resource type="Script" path="res://entities/hazmat_soldier/hazmat_soldier_fsm.gd" id="4_eyg5i"]
+[ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="5_3c0wh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f8ikx"]
+height = 1.74112
+radius = 0.234441
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_w8jxj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gdqo"]
+animation = &"WalkArms"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kiscc"]
+animation = &"HoldRifle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oyvd6"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_dvuiq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wg4tc"]
+nodes/Add2/node = SubResource("AnimationNodeAdd2_w8jxj")
+nodes/Add2/position = Vector2(800, 160)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_oyvd6")
+nodes/Animation/position = Vector2(540, 100)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_2gdqo")
+"nodes/Animation 2/position" = Vector2(400, 240)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_kiscc")
+"nodes/Animation 3/position" = Vector2(400, 360)
+"nodes/Blend2 2/node" = SubResource("AnimationNodeBlend2_dvuiq")
+"nodes/Blend2 2/position" = Vector2(600, 260)
+nodes/output/position = Vector2(980, 140)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Blend2 2", &"Blend2 2", 0, &"Animation 2", &"Blend2 2", 1, &"Animation 3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kvovw"]
+radius = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yt7sy"]
+viewport_path = NodePath("SubViewport")
+
+[node name="HazmatSoldier" type="CharacterBody3D"]
+script = ExtResource("1_fpswe")
+
+[node name="hazmat_soldier" parent="." instance=ExtResource("2_t8qi5")]
+
+[node name="Skeleton3D" parent="hazmat_soldier/HazmatSoldier" index="0"]
+bones/2/rotation = Quaternion(0.000474975, 0.000474975, 0.000474975, 1.00048)
+bones/8/rotation = Quaternion(0.487016, 0.0144686, -0.130289, 0.863499)
+bones/9/rotation = Quaternion(-2.9824e-08, 0.101236, -0.180925, 0.978273)
+bones/10/rotation = Quaternion(4.80156e-07, 2.86576e-06, -0.117365, 0.993089)
+bones/32/rotation = Quaternion(0.473046, 0.119101, 0.0474008, 0.871662)
+bones/33/rotation = Quaternion(5.86852e-07, -0.0590516, 0.105614, 0.992652)
+bones/34/rotation = Quaternion(-0.00139203, 0.00797696, -0.00248198, 0.999964)
+bones/55/rotation = Quaternion(-2.13147e-07, 0.209138, 0.977886, -4.66774e-07)
+bones/56/rotation = Quaternion(-0.364732, -2.59661e-07, -7.20605e-08, 0.931112)
+bones/57/rotation = Quaternion(0.307016, -9.24937e-08, -2.07846e-07, 0.951704)
+bones/60/rotation = Quaternion(-1.09412e-07, -0.023033, 0.999735, -4.39543e-07)
+bones/61/rotation = Quaternion(-0.0394102, -1.78887e-07, 1.89155e-08, 0.999223)
+bones/62/rotation = Quaternion(0.49253, -1.44676e-08, -1.53171e-07, 0.870295)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.873263, 0)
+shape = SubResource("CylinderShape3D_f8ikx")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_wg4tc")
+anim_player = NodePath("../hazmat_soldier/AnimationPlayer")
+active = true
+parameters/Add2/add_amount = 1.0
+"parameters/Blend2 2/blend_amount" = 0.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_klnvt")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("4_eyg5i")
+
+[node name="StepChecker" parent="." instance=ExtResource("4_e0jtx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_kvovw")
+
+[node name="DevInfoTag3D" parent="." instance=ExtResource("5_3c0wh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+texture = SubResource("ViewportTexture_yt7sy")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="WanderTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="ScanForItemsTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="ScanForTargetsTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[editable path="hazmat_soldier"]
+[editable path="DevInfoTag3D"]

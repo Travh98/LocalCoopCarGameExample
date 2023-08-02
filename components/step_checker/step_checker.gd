@@ -35,11 +35,11 @@ func can_step(desired_dir: Vector3, delta: float) -> Vector3:
 	
 	var floor_pos: Vector3 = Vector3.ZERO
 	if is_wall_detected():
-		print("Wall is blocking: ", wall_check.get_collider())
+#		print("Wall is blocking: ", wall_check.get_collider())
 		return Vector3.ZERO
 	
 	if !is_floor_detected():
-		print("No floor to step on")
+#		print("No floor to step on")
 		return Vector3.ZERO
 	else:
 		# Global position of where the floor check hits
@@ -50,13 +50,13 @@ func can_step(desired_dir: Vector3, delta: float) -> Vector3:
 		
 		# Is there enough room between the floor and ceiling to step to?
 		if ceiling_pos.distance_to(floor_pos) < character_height:
-			print("No room for head")
+#			print("No room for head")
 			return Vector3.ZERO
 		else:
-			print("Step to floor pos: ", floor_pos)
+#			print("Step to floor pos: ", floor_pos)
 			return floor_pos
 	else:
-		print("Step to floor pos: ", floor_pos)
+#		print("Step to floor pos: ", floor_pos)
 		return floor_pos
 	return Vector3.ZERO
 
