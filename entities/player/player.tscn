@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://pmpwu2leiece"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_kddn8"]
+[ext_resource type="PackedScene" uid="uid://m7xv0r8c8a2t" path="res://components/follow_camera/follow_camera.tscn" id="2_hjo3d"]
+[ext_resource type="PackedScene" uid="uid://dexa6jq6wkuuy" path="res://components/step_checker/step_checker.tscn" id="3_cb1pl"]
+[ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="4_0myll"]
+[ext_resource type="Script" path="res://entities/player/player_fsm.gd" id="5_tmmmc"]
+[ext_resource type="PackedScene" uid="uid://nfvoks38cm7x" path="res://components/dev_info_tag/dev_info_tag_3d.tscn" id="6_id7ar"]
+[ext_resource type="Texture2D" uid="uid://de3siuhrhljcs" path="res://assets/icons/cutesquid.png" id="7_6ximh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ss7cy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uw2w8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_28lwq"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvvg0"]
+size = Vector3(0.1, 0.1, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_kddn8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_ss7cy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_uw2w8")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906005, 0.423267, 0, -0.423267, 0.906005, 0, 1, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 5.0
+
+[node name="CameraGuide" type="Node3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0702251, 5.05358)
+
+[node name="FollowCamera" parent="." node_paths=PackedStringArray("camera_guide", "look_at_target") instance=ExtResource("2_hjo3d")]
+camera_guide = NodePath("../CameraPivot/SpringArm3D/CameraGuide")
+look_at_target = NodePath("..")
+
+[node name="FirstPersonCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6486, 0)
+
+[node name="StepChecker" parent="." instance=ExtResource("3_cb1pl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_0myll")]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_tmmmc")
+
+[node name="DevInfoTag3D" parent="." instance=ExtResource("6_id7ar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+texture = SubResource("ViewportTexture_28lwq")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.53018, -0.500011)
+flip_h = true
+texture = ExtResource("7_6ximh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12306, -0.578904)
+mesh = SubResource("BoxMesh_lvvg0")

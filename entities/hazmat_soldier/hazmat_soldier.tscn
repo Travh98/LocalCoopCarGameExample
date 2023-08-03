@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://boo4pf68mgkn4"]
 
-[ext_resource type="Script" path="res://entities/mob.gd" id="1_fpswe"]
+[ext_resource type="Script" path="res://entities/ch_mob.gd" id="1_fpswe"]
 [ext_resource type="PackedScene" uid="uid://d1p8wsfqgiaeu" path="res://entities/hazmat_soldier/hazmat_soldier.glb" id="2_t8qi5"]
 [ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="3_klnvt"]
 [ext_resource type="PackedScene" uid="uid://dexa6jq6wkuuy" path="res://components/step_checker/step_checker.tscn" id="4_e0jtx"]

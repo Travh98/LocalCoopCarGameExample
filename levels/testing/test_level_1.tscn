@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ctxdy7uebc5tr" path="res://props/small_platform.tscn" id="4_4vukh"]
 [ext_resource type="PackedScene" uid="uid://c4a4p5to0obr5" path="res://entities/immortal_snail/immortal_snail.tscn" id="4_ik0c5"]
 [ext_resource type="PackedScene" uid="uid://cdxx05jtrpgu1" path="res://entities/food/banana/banana.tscn" id="7_81fgy"]
-[ext_resource type="PackedScene" uid="uid://pmpwu2leiece" path="res://entities/player_3rd_person/player_3rd_person.tscn" id="8_6h7th"]
+[ext_resource type="PackedScene" uid="uid://pmpwu2leiece" path="res://entities/player/player.tscn" id="8_6h7th"]
 [ext_resource type="PackedScene" uid="uid://boo4pf68mgkn4" path="res://entities/hazmat_soldier/hazmat_soldier.tscn" id="9_jb8hn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
@@ -117,7 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15929, 0.989581, -7.05405)
 [node name="Banana" parent="." instance=ExtResource("7_81fgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3393, 1.86632, -2.48766)
 
-[node name="Player3rdPerson" parent="." instance=ExtResource("8_6h7th")]
+[node name="Player" parent="." instance=ExtResource("8_6h7th")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44861, 0.593645, 3.84994)
 
 [node name="HazmatSoldier" parent="." instance=ExtResource("9_jb8hn")]

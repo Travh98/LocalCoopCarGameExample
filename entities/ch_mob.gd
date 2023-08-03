@@ -8,6 +8,8 @@ extends CharacterBody3D
 # Movement Variables
 var gravity_multiplier := 3.0
 var move_speed: float = 3
+const walk_speed: float = 3
+const sprint_speed: float = 8
 var acceleration: float = 8
 var deceleration: float = 10
 var jump_height: float = 10
@@ -23,7 +25,8 @@ var direction := Vector3()
 
 func _ready():
 	health_component.health_died.connect(on_death)
-	nav_agent.velocity_computed.connect(on_nav_velocity_computed)
+	if nav_agent != null:
+		nav_agent.velocity_computed.connect(on_nav_velocity_computed)
 	print("Creating class mob")
 
 
@@ -37,6 +40,13 @@ func apply_movement():
 
 func apply_jump():
 	velocity.y = jump_height
+
+
+func apply_sprint(do_sprint: bool, delta: float):
+	if do_sprint:
+		move_speed = lerpf(move_speed, sprint_speed, delta)
+	else:
+		move_speed = lerpf(move_speed, walk_speed, delta)
 
 
 func on_nav_velocity_computed(safe_velocity: Vector3):
