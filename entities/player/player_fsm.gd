@@ -100,6 +100,8 @@ func handle_move_input():
 
 
 func handle_mob_and_camera_rotation(delta: float):
+	third_person_camera_pivot.global_position = mob.global_position + Vector3.UP
+	
 	# If player is trying to move
 	if input_axis != Vector2.ZERO:
 		# Move camera to right behind player

@@ -109,5 +109,5 @@ func rotate_towards_motion_no_y(delta: float):
 		return
 	var angle := current_direction.signed_angle_to(direction, axis)
 	var angle_step: float = min(angular_speed * delta, abs(angle)) * sign(angle)
-	if abs(angle) > 1.0:
+	if rad_to_deg(abs(angle)) > 1.0:
 		rotate(axis, angle_step)
