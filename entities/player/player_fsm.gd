@@ -7,13 +7,15 @@ var mob: ChMob
 @onready var follow_camera: FollowCamera = $"../FollowCamera"
 @onready var first_person_camera: Camera3D = $"../FirstPersonCamera"
 @onready var step_checker: StepChecker = $"../StepChecker"
+@onready var third_person_camera_pivot: Node3D = $"../CameraPivot"
 
 @export var is_first_person: bool = false
 var sensitivity_x: float = 0.5
 var sensitivity_y: float = 0.5
+var input_axis: Vector2 = Vector2.ZERO
 
 # Third Person Player will rotate in direction of movement unless input mouse movement is greater than this
-const third_person_rotate_camera_force_limit: float = 5.0
+const third_person_rotate_camera_force_limit: float = 0.5
 
 
 func _ready():
@@ -39,8 +41,9 @@ func _state_logic(delta):
 			mob.apply_gravity(delta)
 	
 	# TODO Get that nice third person movement where they can walk around but if you need them to look you use the mouse
-#	if !is_first_person:
-#		mob.rotate_towards_motion_no_y(delta)
+	if !is_first_person:
+		handle_mob_and_camera_rotation(delta)
+	
 	mob.accelerate(delta)
 	mob.apply_movement()
 
@@ -66,7 +69,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if !is_first_person:
 			if abs(event.relative.x) > third_person_rotate_camera_force_limit:
-				mob.rotate_y(deg_to_rad(-event.relative.x) * sensitivity_x)
+				third_person_camera_pivot.rotate_y(deg_to_rad(-event.relative.x) * sensitivity_x)
 
 
 func handle_player_inputs():
@@ -90,10 +93,20 @@ func handle_move_input():
 		pass
 	else:
 		var forward: Vector3 = -follow_camera.global_transform.basis.z.normalized()
-		var input_axis = Input.get_vector(&"move_backward", &"move_forward",
+		input_axis = Input.get_vector(&"move_backward", &"move_forward",
 				&"move_left", &"move_right")
 		
 		mob.direction = -forward * -input_axis.x + forward.cross(Vector3.UP) * input_axis.y
+
+
+func handle_mob_and_camera_rotation(delta: float):
+	# If player is trying to move
+	if input_axis != Vector2.ZERO:
+		# Move camera to right behind player
+#		third_person_camera_pivot.rotation_degrees.y = 0
+		# Rotate the player relative to the camera
+		# TODO Boy this is confusing!
+		mob.rotate_towards_motion_no_y(delta)
 
 
 func handle_sprint(delta: float):
