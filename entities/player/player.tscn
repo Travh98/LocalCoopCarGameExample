@@ -12,7 +12,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uw2w8"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yvd8b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_buhkb"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvvg0"]
@@ -20,6 +20,9 @@ size = Vector3(0.1, 0.1, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_kddn8")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_tmmmc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -52,15 +55,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_0myll")]
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("5_tmmmc")
-
 [node name="DevInfoTag3D" parent="." instance=ExtResource("6_id7ar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_yvd8b")
+texture = SubResource("ViewportTexture_buhkb")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.53018, -0.500011)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.667255, -0.500011)
 flip_h = true
 texture = ExtResource("7_6ximh")
 

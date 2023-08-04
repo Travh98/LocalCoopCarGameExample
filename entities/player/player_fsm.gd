@@ -5,23 +5,30 @@ var mob: ChMob
 #@onready var anim_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var health_component: HealthComponent = $"../HealthComponent"
 @onready var follow_camera: FollowCamera = $"../FollowCamera"
-@onready var first_person_camera: Camera3D = $"../FirstPersonCamera"
+@onready var fp_camera: Camera3D = $"../FirstPersonCamera"
 @onready var step_checker: StepChecker = $"../StepChecker"
-@onready var third_person_camera_pivot: Node3D = $"../CameraPivot"
+@onready var tp_camera_pivot: Node3D = $"../CameraPivot"
 
-@export var is_first_person: bool = false
-var sensitivity_x: float = 0.5
-var sensitivity_y: float = 0.5
+@export var is_first_person: bool = true
+var tp_sensitivity_x: float = 0.5
+var tp_sensitivity_y: float = 0.5
+var fp_sensitivity_x: float = 0.01
+var fp_sensitivity_y: float = 0.01
+var mouse_look_limit: float = 90.0
 var input_axis: Vector2 = Vector2.ZERO
 
 # Third Person Player will rotate in direction of movement unless input mouse movement is greater than this
-const third_person_rotate_camera_force_limit: float = 0.5
+const tp_rotate_camera_force_limit: float = 0.5
 
 
 func _ready():
 	mob = get_parent()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health_component.health_died.connect(on_death)
+	if is_first_person:
+		fp_camera.make_current()
+	else:
+		follow_camera.make_current()
 	
 	# Create states
 	add_state("walk")
@@ -68,8 +75,15 @@ func _exit_state(_old_state, _new_state):
 func _input(event):
 	if event is InputEventMouseMotion:
 		if !is_first_person:
-			if abs(event.relative.x) > third_person_rotate_camera_force_limit:
-				third_person_camera_pivot.rotate_y(deg_to_rad(-event.relative.x) * sensitivity_x)
+			if abs(event.relative.x) > tp_rotate_camera_force_limit:
+				tp_camera_pivot.rotate_y(deg_to_rad(-event.relative.x) * tp_sensitivity_x)
+		else:
+			# Mouse look (only if the mouse is captured).
+			if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+				# rotation of character on y axis
+				mob.rotate_y(-event.relative.x * fp_sensitivity_y)
+				# Vertical mouse look
+				fp_camera.rotation.x = clamp(fp_camera.rotation.x - event.relative.y * fp_sensitivity_x, -deg_to_rad(mouse_look_limit), deg_to_rad(mouse_look_limit))
 
 
 func handle_player_inputs():
@@ -80,32 +94,32 @@ func handle_player_inputs():
 	if Input.is_action_just_pressed("change_perspective"):
 		if is_first_person:
 			follow_camera.current = true
-			first_person_camera.current = false
+			fp_camera.current = false
 			is_first_person = false
 		else:
-			first_person_camera.current = true
+			fp_camera.current = true
 			follow_camera.current = false
 			is_first_person = true
 
 
 func handle_move_input():
+	input_axis = Input.get_vector(&"move_backward", &"move_forward",
+				&"move_left", &"move_right")
 	if is_first_person:
-		pass
+		mob.direction = -mob.global_transform.basis.z * input_axis.x \
+		+ mob.global_transform.basis.x * input_axis.y 
 	else:
 		var forward: Vector3 = -follow_camera.global_transform.basis.z.normalized()
-		input_axis = Input.get_vector(&"move_backward", &"move_forward",
-				&"move_left", &"move_right")
-		
 		mob.direction = -forward * -input_axis.x + forward.cross(Vector3.UP) * input_axis.y
 
 
 func handle_mob_and_camera_rotation(delta: float):
-	third_person_camera_pivot.global_position = mob.global_position + Vector3.UP
+	tp_camera_pivot.global_position = mob.global_position + Vector3.UP
 	
 	# If player is trying to move
 	if input_axis != Vector2.ZERO:
 		# Move camera to right behind player
-#		third_person_camera_pivot.rotation_degrees.y = 0
+#		tp_camera_pivot.rotation_degrees.y = 0
 		# Rotate the player relative to the camera
 		# TODO Boy this is confusing!
 		mob.rotate_towards_motion_no_y(delta)
@@ -148,7 +162,6 @@ func apply_step(delta: float) -> bool:
 		# Hard set the mob's y velocity
 		mob.velocity.y = desired_y_pos * mob.move_speed * 3
 		return true
-		
 
 
 func on_death():

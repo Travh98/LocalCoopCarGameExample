@@ -109,5 +109,6 @@ func rotate_towards_motion_no_y(delta: float):
 		return
 	var angle := current_direction.signed_angle_to(direction, axis)
 	var angle_step: float = min(angular_speed * delta, abs(angle)) * sign(angle)
-	if rad_to_deg(abs(angle)) > 1.0:
-		rotate(axis, angle_step)
+#	rotate(axis, angle_step)
+	rotation.y = lerp(rotation.y, rotation.y + angle_step, angular_speed * angular_speed * delta)
+#	rotation.y = lerp(rotation.y, abs(angle) * sign(angle), angular_speed * delta)
