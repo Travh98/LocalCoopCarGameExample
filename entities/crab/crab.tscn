@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bofkkclblynr2"]
+
+[ext_resource type="PackedScene" uid="uid://d5he3bmsscq5" path="res://entities/crab/crab.glb" id="1_th0ng"]
+
+[node name="Crab" type="CharacterBody3D"]
+
+[node name="crab" parent="." instance=ExtResource("1_th0ng")]
+
+[node name="Skeleton3D" parent="crab/Armature" index="0"]
+bones/3/rotation = Quaternion(7.38596e-08, 6.62126e-08, -0.239177, 0.970976)
+bones/4/rotation = Quaternion(-5.08102e-09, -5.34861e-08, 0.88078, -0.473526)
+
+[editable path="crab"]

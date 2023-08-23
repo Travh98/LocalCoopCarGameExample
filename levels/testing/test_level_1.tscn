@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://uyotdfaa8g3t"]
+[gd_scene load_steps=16 format=3 uid="uid://uyotdfaa8g3t"]
 
 [ext_resource type="PackedScene" uid="uid://kofqb4ifngxh" path="res://props/platform.tscn" id="1_1xova"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_ju8sk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdxx05jtrpgu1" path="res://entities/food/banana/banana.tscn" id="7_81fgy"]
 [ext_resource type="PackedScene" uid="uid://pmpwu2leiece" path="res://entities/player/player.tscn" id="8_6h7th"]
 [ext_resource type="PackedScene" uid="uid://boo4pf68mgkn4" path="res://entities/hazmat_soldier/hazmat_soldier.tscn" id="9_jb8hn"]
+[ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="10_b2o18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
 sky_top_color = Color(0.298039, 0.556863, 0.87451, 1)
@@ -23,6 +24,9 @@ sky = SubResource("Sky_uoail")
 [sub_resource type="NavigationMesh" id="NavigationMesh_wgitf"]
 vertices = PackedVector3Array(-4.5, 0.910542, -5.25, -3.5, 0.910542, -5.25, 4.5, 0.910542, -5.75, 4.5, 0.910542, -14.5, -4.5, 0.910542, -14.5, -3.25, 0.910542, 0.25, -4.25, 0.910542, 0.5, -2.75, 0.910542, 0.5, -3.25, 1.16054, -4.25, -4.25, 1.66054, -4.25, -4.25, 1.66054, -4, -3.25, 1.16054, -4, -3.25, 1.16054, -4.25, -3.25, 1.16054, -4, -2.75, 0.910542, 0.5, -2.5, 0.910542, 1.5, 4.75, 0.910542, 1.5, 4.5, 0.910542, -5.75, -3.25, 0.910542, -3, -4.25, 0.910542, -3, -4.25, 0.910542, -2, -3.25, 0.910542, -2, 4.5, 0.910542, -5.75, -3.5, 0.910542, -5.25, -3.25, 1.16054, -4.25, -3.25, 0.910542, -2, -3.25, 0.910542, 0.25, -2.75, 0.910542, 0.5, -3.25, 0.910542, -3, -3.25, 0.910542, -2, -2.75, 0.910542, 0.5, -3.25, 1.16054, -4, -3.25, 0.910542, -3, -2.75, 0.910542, 0.5, -5.5, 1.41054, -0.5, -4.75, 1.66054, -0.75, -5.5, 1.41054, -1.25, -4.5, 1.66054, 4.5, -4.5, 1.66054, 4.25, -5.5, 1.41054, 4, -14.5, 1.41054, 4.5, -5.5, 1.41054, -3.75, -4.25, 1.66054, -4, -4.25, 1.66054, -4.25, -14.5, 1.41054, -4.5, -5.75, 1.41054, 0.75, -5.5, 1.41054, -0.5, -5.5, 1.41054, -1.25, -5.75, 1.41054, 0.75, -5.5, 1.41054, -1.25, -5.5, 1.41054, -3.75, -14.5, 1.41054, -4.5, -14.5, 1.41054, 4.5, -14.5, 1.41054, 4.5, -5.5, 1.41054, 4, -5.75, 1.41054, 0.75, 5.75, -0.089458, -4.5, 5.75, -0.089458, 4.5, 14.5, -0.089458, 4.5, 14.5, -0.089458, -4.5, -4.25, 0.910542, 2.75, -4.25, 0.910542, 3.25, -3.25, 0.910542, 3.25, -2.75, 0.910542, 2.75, -2.75, 0.910542, 2.75, -3.25, 1.16054, 4.5, -3.5, 0.660542, 5.5, 4.5, 0.660542, 6, 4.75, 0.910542, 1.5, -4.5, 1.66054, 4.25, -4.5, 1.66054, 4.5, -3.25, 1.16054, 4.5, -3.25, 1.16054, 4.25, 4.75, 0.910542, 1.5, -2.5, 0.910542, 1.5, -2.75, 0.910542, 2.75, -2.75, 0.910542, 2.75, -3.25, 0.910542, 3.25, -3.25, 1.16054, 4.25, -2.75, 0.910542, 2.75, -3.25, 1.16054, 4.25, -3.25, 1.16054, 4.5, -3.5, 0.660542, 5.5, -4.5, 0.660542, 5.5, -4.5, -1.58946, 14, 4.5, -1.58946, 14, 4.5, 0.660542, 6)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(16, 12, 17), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(24, 23, 22), PackedInt32Array(27, 26, 25), PackedInt32Array(30, 29, 28), PackedInt32Array(33, 32, 31), PackedInt32Array(36, 35, 34), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 40), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 44), PackedInt32Array(47, 46, 45), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(51, 48, 52), PackedInt32Array(55, 54, 53), PackedInt32Array(59, 58, 56), PackedInt32Array(56, 58, 57), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 63), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(67, 64, 68), PackedInt32Array(72, 71, 69), PackedInt32Array(69, 71, 70), PackedInt32Array(75, 74, 73), PackedInt32Array(78, 77, 76), PackedInt32Array(81, 80, 79), PackedInt32Array(82, 86, 83), PackedInt32Array(83, 86, 85), PackedInt32Array(83, 85, 84)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dqkjw"]
+size = Vector3(100, 20, 100)
 
 [node name="TestLevel1" type="Node3D"]
 script = ExtResource("1_ju8sk")
@@ -122,3 +126,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44861, 0.593645, 3.84994)
 
 [node name="HazmatSoldier" parent="." instance=ExtResource("9_jb8hn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.44577, 1.531, -2.38419e-07)
+
+[node name="HurtBox" parent="." instance=ExtResource("10_b2o18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
+damage = 200.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+shape = SubResource("BoxShape3D_dqkjw")
