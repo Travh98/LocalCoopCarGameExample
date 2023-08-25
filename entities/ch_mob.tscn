@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnihcb0abrjg6"]
+
+[ext_resource type="Script" path="res://entities/ch_mob.gd" id="1_wou1r"]
+[ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="2_igka7"]
+
+[node name="ChMob" type="CharacterBody3D"]
+script = ExtResource("1_wou1r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_igka7")]

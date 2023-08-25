@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8y4fgmdqjn4c"]
+
+[ext_resource type="PackedScene" uid="uid://bnihcb0abrjg6" path="res://entities/ch_mob.tscn" id="1_ec36l"]
+[ext_resource type="PackedScene" uid="uid://bq6ue7lsqd6nf" path="res://components/state_machine/npc_state_machine.tscn" id="2_5eymi"]
+[ext_resource type="Material" uid="uid://ghmbrtmasmiw" path="res://assets/materials/endesga_detail_mat.tres" id="2_mwcv1"]
+[ext_resource type="Script" path="res://entities/test_npc/test_npc_fsm.gd" id="3_j531x"]
+[ext_resource type="PackedScene" uid="uid://dexa6jq6wkuuy" path="res://components/step_checker/step_checker.tscn" id="4_veot0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6vjtf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v8ahm"]
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyvna"]
+albedo_color = Color(1, 0.615686, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_htx58"]
+material = SubResource("StandardMaterial3D_oyvna")
+size = Vector3(0.25, 0.25, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gddg8"]
+radius = 10.0
+
+[node name="TestNpc" instance=ExtResource("1_ec36l")]
+
+[node name="NpcStateMachine" parent="." index="2" instance=ExtResource("2_5eymi")]
+script = ExtResource("3_j531x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_6vjtf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_v8ahm")
+surface_material_override/0 = ExtResource("2_mwcv1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60693, -0.293466)
+mesh = SubResource("BoxMesh_htx58")
+
+[node name="DetectionArea" type="Area3D" parent="." index="6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" index="0"]
+shape = SubResource("SphereShape3D_gddg8")
+
+[node name="StepChecker" parent="." index="7" instance=ExtResource("4_veot0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Timers" type="Node" parent="." index="8"]
+
+[node name="ScanForItemsTimer" type="Timer" parent="Timers" index="0"]
+wait_time = 2.0
+one_shot = true

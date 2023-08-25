@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://uyotdfaa8g3t"]
+[gd_scene load_steps=17 format=3 uid="uid://uyotdfaa8g3t"]
 
 [ext_resource type="PackedScene" uid="uid://kofqb4ifngxh" path="res://props/platform.tscn" id="1_1xova"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_ju8sk"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://pmpwu2leiece" path="res://entities/player/player.tscn" id="8_6h7th"]
 [ext_resource type="PackedScene" uid="uid://boo4pf68mgkn4" path="res://entities/hazmat_soldier/hazmat_soldier.tscn" id="9_jb8hn"]
 [ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="10_b2o18"]
+[ext_resource type="PackedScene" uid="uid://b8y4fgmdqjn4c" path="res://entities/test_npc/test_npc.tscn" id="11_kpttr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
 sky_top_color = Color(0.298039, 0.556863, 0.87451, 1)
@@ -133,3 +134,6 @@ damage = 200.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("BoxShape3D_dqkjw")
+
+[node name="TestNpc" parent="." instance=ExtResource("11_kpttr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6966, 1.38519, 2.1489)

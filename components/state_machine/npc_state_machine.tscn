@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq6ue7lsqd6nf"]
+
+[ext_resource type="Script" path="res://components/state_machine/npc_state_machine.gd" id="1_1dkg8"]
+
+[node name="NpcStateMachine" type="Node"]
+script = ExtResource("1_1dkg8")
+
+[node name="ChangeStateTimer" type="Timer" parent="."]
+one_shot = true

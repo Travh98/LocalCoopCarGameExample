@@ -13,11 +13,11 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_td5kj"]
 radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyvna"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ckkkg"]
 albedo_color = Color(1, 0.615686, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_b1epm"]
-material = SubResource("StandardMaterial3D_oyvna")
+material = SubResource("StandardMaterial3D_ckkkg")
 size = Vector3(0.25, 0.25, 0.5)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_a8bbb"]

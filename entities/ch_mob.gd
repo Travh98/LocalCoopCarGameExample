@@ -8,8 +8,8 @@ extends CharacterBody3D
 # Movement Variables
 var gravity_multiplier := 3.0
 var move_speed: float = 3
-const walk_speed: float = 3
-const sprint_speed: float = 8
+var walk_speed: float = 3
+var sprint_speed: float = 8
 var acceleration: float = 8
 var deceleration: float = 10
 var jump_height: float = 10

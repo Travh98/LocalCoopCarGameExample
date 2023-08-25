@@ -61,6 +61,7 @@ func on_request_spawn() -> bool:
 
 func on_npc_spawned(npc: ChMob):
 	spawned_npcs.append(npc)
+	print("Added Npc: ", npc, " to spawned npcs, count: ", spawned_npcs.size())
 
 
 func on_npc_despawned(npc: ChMob):
