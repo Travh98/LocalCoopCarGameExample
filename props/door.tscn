@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7gdenpfdjyyb"]
+
+[ext_resource type="PackedScene" uid="uid://bnkn24m6xthay" path="res://components/interactions/interactable_component.tscn" id="1_a4f2p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8n23s"]
+size = Vector3(1, 2, 0.2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nfft7"]
+points = PackedVector3Array(0.5, 0.954305, 0.0995948, -0.515873, -1.01587, -0.115851, -0.486038, -0.958011, 0.1, -0.515873, 1.01587, -0.115851, 0.531746, -1.01587, -0.115851, 0.531746, 1.01587, -0.115851, -0.486038, 0.958011, 0.1, 0.5, -0.954305, 0.0995948)
+
+[node name="Door" type="RigidBody3D"]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+mesh = SubResource("BoxMesh_8n23s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_nfft7")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("1_a4f2p")]

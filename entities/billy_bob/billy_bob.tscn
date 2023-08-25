@@ -20,7 +20,7 @@ albedo_color = Color(1, 0.615686, 1, 1)
 material = SubResource("StandardMaterial3D_oyvna")
 size = Vector3(0.25, 0.25, 0.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5wpyj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_a8bbb"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2dkdk"]
@@ -54,7 +54,7 @@ script = ExtResource("3_lgnv7")
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("3_5xlna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_5wpyj")
+texture = SubResource("ViewportTexture_a8bbb")
 
 [node name="Timers" type="Node" parent="."]
 
