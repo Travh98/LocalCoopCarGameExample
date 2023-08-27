@@ -7,7 +7,10 @@ class PlayerInfo:
 	var device_id: int = -1
 	var color: Color = Color.RED
 
+# Dictionary of device_id to PlayerInfos
 var players = {}
+var PlayerScene: PackedScene = preload("res://entities/player/player.tscn")
+var InputControllerScene: PackedScene = preload("res://components/input_system/input_controller.tscn")
 
 var current_level_node_name: String
 

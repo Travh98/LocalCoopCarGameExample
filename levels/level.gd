@@ -1,9 +1,26 @@
 extends Node3D
 
 
-# Called when the node enters the scene tree for the first time.
+@onready var player_spawn_spots: Node3D = $PlayerSpawnSpots
+
 func _ready():
-	pass # Replace with function body.
+	
+	# Spawn players on level start
+	var PlayerScene = GameManager.PlayerScene
+	var InputControllerScene: PackedScene = GameManager.InputControllerScene
+	
+	var spawn_spots = player_spawn_spots.get_children()
+	for device_id in GameManager.players.keys():
+		var player: Player = PlayerScene.instantiate()
+		add_child(player)
+		
+		var player_info: GameManager.PlayerInfo = GameManager.players[device_id]
+		player.global_position = spawn_spots[player_info.device_id].global_position
+		player.global_rotation = spawn_spots[player_info.device_id].global_rotation
+		
+		# Create input controller and attach to player
+		
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

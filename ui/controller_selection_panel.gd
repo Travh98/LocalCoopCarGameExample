@@ -13,4 +13,3 @@ func _set_is_ready(ready: bool):
 		controller_status_label.text = "READY"
 	else:
 		controller_status_label.text = "PRESS A TO JOIN"
-	   

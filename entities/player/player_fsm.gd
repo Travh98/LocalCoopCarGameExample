@@ -1,6 +1,7 @@
 extends StateMachine
 
 var mob: ChMob
+var input_controller: InputController
 
 #@onready var anim_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var health_component: HealthComponent = $"../HealthComponent"
@@ -133,8 +134,11 @@ func handle_sprint(delta: float):
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump"):
-		mob.apply_jump()
+	if input_controller != null:
+		if input_controller.is_buffered_action_just_pressed("jump"):
+			mob.apply_jump()
+#	if Input.is_action_just_pressed("jump"):
+#		mob.apply_jump()
 
 
 func apply_step(delta: float) -> bool:
@@ -169,3 +173,8 @@ func on_death():
 	mob.global_position = Vector3.ZERO
 	mob.velocity = Vector3.ZERO
 	health_component.full_heal()
+
+
+func _set_input_controller(ctrl: InputController):
+	print("Setting input controller")
+	input_controller = ctrl
