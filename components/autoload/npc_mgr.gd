@@ -22,12 +22,12 @@ var update_tick_timer: Timer
 func _ready():
 	print("NpcMgr loaded")
 	
-	update_tick_timer = Timer.new()
-	update_tick_timer.one_shot = false
-	update_tick_timer.wait_time = 1 + logic_lod * logic_lod_factor
-	update_tick_timer.autostart = true
-	update_tick_timer.timeout.connect(update_tick)
-	get_tree().root.call_deferred("add_child", update_tick_timer)
+#	update_tick_timer = Timer.new()
+#	update_tick_timer.one_shot = false
+#	update_tick_timer.wait_time = 1 + logic_lod * logic_lod_factor
+#	update_tick_timer.autostart = true
+#	update_tick_timer.timeout.connect(update_tick)
+#	get_tree().root.call_deferred("add_child", update_tick_timer)
 
 
 func update_tick():
