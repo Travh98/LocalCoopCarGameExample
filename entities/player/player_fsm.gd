@@ -15,6 +15,11 @@ var tp_sensitivity_x: float = 0.5
 var tp_sensitivity_y: float = 0.5
 var fp_sensitivity_x: float = 0.01
 var fp_sensitivity_y: float = 0.01
+var controller_tp_sensitivity_x: float = 1.5
+var controller_tp_sensitivity_y: float = 1.5
+var controller_fp_sensitivity_x: float = 0.1
+var controller_fp_sensitivity_y: float = 0.1
+var controller_min_axis_value: float = 0.1
 var mouse_look_limit: float = 90.0
 var input_axis: Vector2 = Vector2.ZERO
 
@@ -52,6 +57,9 @@ func _state_logic(delta):
 	if !is_first_person:
 		handle_mob_and_camera_rotation(delta)
 	
+	if !input_controller.is_keyboard:
+		handle_controller_camera_rotation()
+	
 	mob.accelerate(delta)
 	mob.apply_movement()
 
@@ -87,12 +95,29 @@ func _input(event):
 				fp_camera.rotation.x = clamp(fp_camera.rotation.x - event.relative.y * fp_sensitivity_x, -deg_to_rad(mouse_look_limit), deg_to_rad(mouse_look_limit))
 
 
+func handle_controller_camera_rotation():
+	var look_relative: Vector2 = input_controller.look_relative_vector
+	if !is_first_person:
+		if abs(look_relative.x) > tp_rotate_camera_force_limit:
+			tp_camera_pivot.rotate_y(deg_to_rad(-look_relative.x) * controller_tp_sensitivity_x)
+	else:
+		print("Look Relative: ", look_relative)
+		# rotation of character on y axis
+		if abs(look_relative.x) > controller_min_axis_value:
+			mob.rotate_y(-look_relative.x * controller_fp_sensitivity_y)
+		# Vertical look
+		if abs(look_relative.y) > controller_min_axis_value:
+			fp_camera.rotation.x = clamp(fp_camera.rotation.x - look_relative.y * controller_fp_sensitivity_x, -deg_to_rad(mouse_look_limit), deg_to_rad(mouse_look_limit))
+
+
 func handle_player_inputs():
-	if Input.is_action_just_pressed("left_click"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if Input.is_action_just_pressed("escape"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if Input.is_action_just_pressed("change_perspective"):
+	if input_controller.is_keyboard:
+		# Keyboard players need to handle the mouse
+		if input_controller.is_action_just_pressed("left_click"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if input_controller.is_action_just_pressed("escape"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if input_controller.is_action_just_pressed("change_perspective"):
 		if is_first_person:
 			follow_camera.current = true
 			fp_camera.current = false
@@ -104,8 +129,9 @@ func handle_player_inputs():
 
 
 func handle_move_input():
-	input_axis = Input.get_vector(&"move_backward", &"move_forward",
-				&"move_left", &"move_right")
+#	input_axis = input_controller.get_vector(&"move_backward", &"move_forward",
+#				&"move_left", &"move_right")
+	input_axis = input_controller.move_vector
 	if is_first_person:
 		mob.direction = -mob.global_transform.basis.z * input_axis.x \
 		+ mob.global_transform.basis.x * input_axis.y 
@@ -115,6 +141,7 @@ func handle_move_input():
 
 
 func handle_mob_and_camera_rotation(delta: float):
+	# Setting global pos because pivot is Top Level
 	tp_camera_pivot.global_position = mob.global_position + Vector3.UP
 	
 	# If player is trying to move
@@ -127,7 +154,7 @@ func handle_mob_and_camera_rotation(delta: float):
 
 
 func handle_sprint(delta: float):
-	if Input.is_action_pressed("sprint"):
+	if input_controller.is_action_pressed("sprint"):
 		mob.move_speed = lerpf(mob.move_speed, mob.sprint_speed, mob.move_speed * delta)
 	else:
 		mob.move_speed = lerpf(mob.move_speed, mob.walk_speed, mob.move_speed * delta)

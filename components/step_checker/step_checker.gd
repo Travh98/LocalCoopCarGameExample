@@ -20,7 +20,7 @@ func _ready():
 
 # Uses raycasts to see if a valid step is in the direction of desired direction
 # Returns the relative position to step to
-func can_step(desired_dir: Vector3, delta: float) -> Vector3:
+func can_step(desired_dir: Vector3, _delta: float) -> Vector3:
 	# This is a top level object, so move to where it belongs on the character
 	# We are top level to avoid inheriting rotations
 	global_position = parent.global_position + Vector3(0, character_height / 2, 0)
@@ -58,7 +58,6 @@ func can_step(desired_dir: Vector3, delta: float) -> Vector3:
 	else:
 #		print("Step to floor pos: ", floor_pos)
 		return floor_pos
-	return Vector3.ZERO
 
 
 func is_wall_detected() -> bool:

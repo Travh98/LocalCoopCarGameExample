@@ -19,12 +19,15 @@ func _ready():
 		player.global_rotation = spawn_spots[player_info.device_id].global_rotation
 		
 		# Create input controller and attach to player
-		
+		var input_controller: InputController = InputControllerScene.instantiate() as InputController
+		player.add_child(input_controller)
+		player.get_node("StateMachine").input_controller = input_controller
+		input_controller.device_id = player_info.device_id
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("quick_quit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("reset_level"):

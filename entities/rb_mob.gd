@@ -33,7 +33,7 @@ func _ready():
 	print("Creating class RbMob")
 
 
-func _integrate_forces(state):
+func _integrate_forces(_state):
 	pass
 
 

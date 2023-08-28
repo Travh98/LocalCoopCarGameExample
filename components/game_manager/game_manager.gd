@@ -18,13 +18,13 @@ func _ready():
 	print("GameManager loaded")
 
 
-func register_player(device_id: int, color: Color, name: String):
+func register_player(player_device_id: int, player_color: Color, player_name: String):
 	var player_info: PlayerInfo = PlayerInfo.new()
-	player_info.name = name
-	player_info.device_id = device_id
-	player_info.color = color
-	print("Created player info in GameManager: ", device_id, " ", name)
-	players[device_id] = player_info
+	player_info.name = player_name
+	player_info.device_id = player_device_id
+	player_info.color = player_color
+	print("Created player info in GameManager: ", player_device_id, " ", player_name)
+	players[player_device_id] = player_info
 
 
 func change_level(level_path: String):

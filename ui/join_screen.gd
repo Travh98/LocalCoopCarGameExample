@@ -29,8 +29,8 @@ func _input(event):
 						ctrl_panel.is_ready = true
 
 
-func on_joy_connection_changed(device_id: int, is_connected: bool):
-	if is_connected:
+func on_joy_connection_changed(device_id: int, connected: bool):
+	if connected:
 		var ctrl_panel: ControllerSelectionPanel = ControllerSelectionPanel.instantiate()
 		controller_selection_panels.add_child(ctrl_panel)
 		ctrl_panel.device_name_label.text = Input.get_joy_name(device_id) + " Device ID: " + str(device_id)
@@ -48,3 +48,4 @@ func on_start_pressed():
 			GameManager.register_player(id, Color.ORANGE_RED, "Player" + str(id))
 	
 	GameManager.change_level(next_scene_path)
+	queue_free()

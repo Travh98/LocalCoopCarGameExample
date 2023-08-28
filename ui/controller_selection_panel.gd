@@ -7,9 +7,9 @@ extends PanelContainer
 var is_ready: bool = false: set = _set_is_ready
 
 
-func _set_is_ready(ready: bool):
-	is_ready = ready
-	if ready:
+func _set_is_ready(set_ready: bool):
+	is_ready = set_ready
+	if set_ready:
 		controller_status_label.text = "READY"
 	else:
 		controller_status_label.text = "PRESS A TO JOIN"

@@ -12,7 +12,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uw2w8"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f218q"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xic87"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvvg0"]
@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="DevInfoTag3D" parent="." instance=ExtResource("6_id7ar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-texture = SubResource("ViewportTexture_f218q")
+texture = SubResource("ViewportTexture_xic87")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.667255, -0.500011)

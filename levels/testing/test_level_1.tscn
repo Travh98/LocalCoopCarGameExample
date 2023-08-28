@@ -130,7 +130,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.44577, 1.531, -2.38419e-07
 
 [node name="HurtBox" parent="." instance=ExtResource("10_b2o18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -32, 0)
-damage = 200.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("BoxShape3D_dqkjw")

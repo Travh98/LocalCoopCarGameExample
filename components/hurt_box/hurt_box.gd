@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var damage: float = 1
+@export var damage: int = 1
 
 func _ready():
 	body_entered.connect(on_body_entered)
