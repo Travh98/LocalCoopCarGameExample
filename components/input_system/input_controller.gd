@@ -43,15 +43,15 @@ func _input(event):
 			if Input.is_action_just_released(action_str):
 				held_inputs[action_str] = false
 	
-	if event is InputEventJoypadMotion:
-		if is_keyboard == true:
-			return
-		
-		if event.device != device_id:
-			return
-		
-		move_vector = Input.get_vector(&"move_backward", &"move_forward",
-			&"move_left", &"move_right")
+#	if event is InputEventJoypadMotion:
+#		if is_keyboard == true:
+#			return
+#
+#		if event.device != device_id:
+#			return
+#
+#		move_vector = Input.get_vector(&"move_backward", &"move_forward",
+#			&"move_left", &"move_right")
 	
 	if event is InputEventMouseButton:
 		if is_keyboard == false:
@@ -71,6 +71,9 @@ func _physics_process(delta):
 	# Update look vectors
 	look_relative_vector.x = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_X)
 	look_relative_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_Y)
+	
+	move_vector.x = Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
+	move_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
 
 
 func is_buffered_action_just_pressed(action_str: String) -> bool:
