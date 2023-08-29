@@ -7,6 +7,8 @@ var is_keyboard: bool = false
 # Which controller this input is from
 var device_id: int = -1
 
+var min_controller_value: float = 0.25
+
 # Dict of action strings to number of frames left
 var buffered_inputs = {}
 var buffer_frames: int = 5
@@ -72,8 +74,14 @@ func _physics_process(delta):
 	look_relative_vector.x = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_X)
 	look_relative_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_Y)
 	
-	move_vector.x = Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
-	move_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
+	# The X Axis needs to be the JOY_AXIS_LEFT_Y and inverted. This is the way
+	move_vector.x = -Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y)
+	if abs(move_vector.x) < min_controller_value:
+		move_vector.x = 0
+	move_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X)
+	if abs(move_vector.y) < min_controller_value:
+		move_vector.y = 0
+	
 
 
 func is_buffered_action_just_pressed(action_str: String) -> bool:

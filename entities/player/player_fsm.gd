@@ -132,6 +132,11 @@ func handle_move_input():
 #	input_axis = input_controller.get_vector(&"move_backward", &"move_forward",
 #				&"move_left", &"move_right")
 	input_axis = input_controller.move_vector
+	print("Input Axis: ", input_axis)
+#	if abs(input_axis.x) < controller_min_axis_value:
+#		return
+#	if abs(input_axis.y) < controller_min_axis_value:
+#		return
 	if is_first_person:
 		mob.direction = -mob.global_transform.basis.z * input_axis.x \
 		+ mob.global_transform.basis.x * input_axis.y 
