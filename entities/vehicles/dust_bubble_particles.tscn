@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://xla4kud3gc0l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eu3q"]
+shading_mode = 0
+albedo_color = Color(0.603941, 0.486867, 0.34089, 1)
+
+[sub_resource type="Curve" id="Curve_mkkx5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.831169, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -12.32, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s3nnw"]
+curve = SubResource("Curve_mkkx5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b0rnf"]
+direction = Vector3(0, 5, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 4.0
+damping_max = 10.12
+scale_curve = SubResource("CurveTexture_s3nnw")
+
+[sub_resource type="SphereMesh" id="SphereMesh_q8mnk"]
+
+[node name="DustBubbleParticles" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_6eu3q")
+amount = 20
+randomness = 0.77
+process_material = SubResource("ParticleProcessMaterial_b0rnf")
+draw_pass_1 = SubResource("SphereMesh_q8mnk")

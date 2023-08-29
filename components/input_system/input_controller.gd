@@ -69,7 +69,7 @@ func _process(_delta):
 #			print("Action Str: ", action_str, " has frames left: ", buffered_inputs[action_str])
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Update look vectors
 	look_relative_vector.x = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_X)
 	look_relative_vector.y = Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_Y)
@@ -111,3 +111,6 @@ func is_action_pressed(action_str: String) -> bool:
 	
 	return held_inputs[action_str]
 
+
+#func get_action_strength(action: StringName, exact_match: bool = false) -> float:
+#	Input.get_joy_axis()

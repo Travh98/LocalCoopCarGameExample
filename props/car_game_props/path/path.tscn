@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw0ku7g42h104"]
+
+[ext_resource type="PackedScene" uid="uid://bmfxv3oit74or" path="res://props/path/path.glb" id="1_dppu7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkhmq"]
+albedo_color = Color(0.662745, 0.45098, 0.184314, 1)
+
+[node name="path" instance=ExtResource("1_dppu7")]
+
+[node name="Plane_015" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fkhmq")

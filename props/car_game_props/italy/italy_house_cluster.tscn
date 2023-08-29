@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://8hcykoeg03hr"]
+
+[ext_resource type="PackedScene" uid="uid://di3u53t1shgu" path="res://props/italy/ItalyHouseFacade.glb" id="1_d0b53"]
+
+[node name="ItalyHouseCluster" type="Node3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3, 0)
+
+[node name="ItalyHouseFacade14" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="ItalyHouseFacade15" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="ItalyHouseFacade26" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="ItalyHouseFacade16" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="ItalyHouseFacade17" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="ItalyHouseFacade18" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 0, -1)
+
+[node name="ItalyHouseFacade19" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1, 0, 1)
+
+[node name="ItalyHouseFacade20" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1, 0, -1)
+
+[node name="ItalyHouseFacade21" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 0, 1)
+
+[node name="ItalyHouseFacade22" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, -1)
+
+[node name="ItalyHouseFacade23" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1, 2, 1)
+
+[node name="ItalyHouseFacade24" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1, 2, -1)
+
+[node name="ItalyHouseFacade25" parent="." instance=ExtResource("1_d0b53")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1, 2, 1)

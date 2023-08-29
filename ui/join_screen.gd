@@ -7,7 +7,7 @@ var ControllerSelectionPanel = preload("res://ui/controller_selection_panel.tscn
 # Dictionary of device ids to controller selection panels
 var controller_panels = {}
 
-var next_scene_path: String = "res://levels/testing/test_level_1.tscn"
+@export var next_scene_path: String = "res://levels/testing/test_level_2.tscn"
 
 func _ready():
 	Input.joy_connection_changed.connect(on_joy_connection_changed)

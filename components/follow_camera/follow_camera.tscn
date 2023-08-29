@@ -3,5 +3,5 @@
 [ext_resource type="Script" path="res://components/follow_camera/follow_camera.gd" id="1_osfj1"]
 
 [node name="FollowCamera" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32865, 4.57992)
+top_level = true
 script = ExtResource("1_osfj1")

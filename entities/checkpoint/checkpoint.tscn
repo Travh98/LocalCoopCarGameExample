@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://c406b7orsroj"]
+
+[ext_resource type="Script" path="res://entities/checkpoint/checkpoint.gd" id="1_a7g4c"]
+[ext_resource type="Texture2D" uid="uid://4rpswgo5n63" path="res://entities/checkpoint/raceflag_checkpoint.png" id="1_lwdld"]
+[ext_resource type="PackedScene" uid="uid://dj3ay4e52y7e7" path="res://entities/checkpoint/checkpoint_particles.tscn" id="3_38pd6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p4rgm"]
+radius = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_1lua6"]
+radius = 10.0
+height = 20.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6r5i5"]
+transparency = 1
+albedo_color = Color(0.760784, 0.654902, 0.313726, 0.203922)
+
+[node name="Checkpoint" type="Node3D"]
+script = ExtResource("1_a7g4c")
+
+[node name="CheckpointArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointArea"]
+shape = SubResource("SphereShape3D_p4rgm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_1lua6")
+surface_material_override/0 = SubResource("StandardMaterial3D_6r5i5")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_lwdld")
+
+[node name="CheckpointParticles" parent="." instance=ExtResource("3_38pd6")]

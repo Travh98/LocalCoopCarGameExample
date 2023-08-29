@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbpbvf86h0o0q"]
+
+[ext_resource type="PackedScene" uid="uid://cvu6wlfyt3eym" path="res://props/ramps/ramp1.glb" id="1_yp5ua"]
+[ext_resource type="Material" uid="uid://b1nbegox3nm87" path="res://assets/materials/purple_mat.tres" id="2_nbax7"]
+
+[node name="ramp1" instance=ExtResource("1_yp5ua")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Ramp1" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_nbax7")

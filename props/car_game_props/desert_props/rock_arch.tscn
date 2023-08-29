@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://crtib2cbo1spe"]
+
+[ext_resource type="PackedScene" uid="uid://cgbjdoloa08cl" path="res://props/desert_props/rock_arch.glb" id="1_6m75g"]
+
+[node name="rock_arch" instance=ExtResource("1_6m75g")]

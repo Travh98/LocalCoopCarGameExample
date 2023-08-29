@@ -2,15 +2,18 @@ extends Node3D
 
 @onready var split_screen_grid: SplitScreenGrid = $SplitScreenGrid
 @onready var player_spawn_spots: Node3D = $PlayerSpawnSpots
+@onready var PlayerScene: PackedScene = preload("res://entities/vehicles/mustang.tscn")
 
 func _ready():
 	# Spawn players on level start
-	var PlayerScene = GameManager.PlayerScene
+	
+	# We could get players from the GameManager but this level will be driving so use specific playerscene
+#	var PlayerScene = GameManager.PlayerScene
 	var InputControllerScene: PackedScene = GameManager.InputControllerScene
 	
 	var spawn_spots = player_spawn_spots.get_children()
 	for device_id in GameManager.players.keys():
-		var player: Player = PlayerScene.instantiate() as Player
+		var player: Node3D = PlayerScene.instantiate() as Node3D
 		if player == null:
 			return
 		
@@ -24,7 +27,9 @@ func _ready():
 		# Create input controller and attach to player
 		var input_controller: InputController = InputControllerScene.instantiate() as InputController
 		player.add_child(input_controller)
-		player.get_node("StateMachine").input_controller = input_controller
+		if player.has_node("StateMachine"):
+			player.get_node("StateMachine").input_controller = input_controller
+			
 		input_controller.device_id = player_info.device_id
 	
 

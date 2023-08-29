@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ej8thlfdsbv"]
+
+[ext_resource type="PackedScene" uid="uid://cd41wjr6ncsb0" path="res://props/ramps/coliseum_sides.glb" id="1_la06n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ybb5"]
+albedo_color = Color(0.694118, 0.52549, 0.803922, 1)
+
+[node name="coliseum_sides" instance=ExtResource("1_la06n")]
+
+[node name="ColiseumSides" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2ybb5")
