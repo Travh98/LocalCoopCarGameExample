@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://uyotdfaa8g3t"]
+[gd_scene load_steps=18 format=3 uid="uid://uyotdfaa8g3t"]
 
 [ext_resource type="PackedScene" uid="uid://kofqb4ifngxh" path="res://props/platform.tscn" id="1_1xova"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_ju8sk"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="10_b2o18"]
 [ext_resource type="PackedScene" uid="uid://b8y4fgmdqjn4c" path="res://entities/test_npc/test_npc.tscn" id="11_kpttr"]
 [ext_resource type="PackedScene" uid="uid://dlmaglk55ulnr" path="res://components/location_indicator.tscn" id="11_q5rg7"]
+[ext_resource type="PackedScene" uid="uid://bxcgxylupbesr" path="res://ui/split_screen_grid.tscn" id="12_5bx7b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_522ux"]
 sky_top_color = Color(0.298039, 0.556863, 0.87451, 1)
@@ -31,6 +32,8 @@ size = Vector3(100, 20, 100)
 
 [node name="TestLevel1" type="Node3D"]
 script = ExtResource("1_ju8sk")
+
+[node name="SplitScreenGrid" parent="." instance=ExtResource("12_5bx7b")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)

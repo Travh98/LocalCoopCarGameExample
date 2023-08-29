@@ -1,18 +1,21 @@
 extends Node3D
 
-
+@onready var split_screen_grid: SplitScreenGrid = $SplitScreenGrid
 @onready var player_spawn_spots: Node3D = $PlayerSpawnSpots
 
 func _ready():
-	
 	# Spawn players on level start
 	var PlayerScene = GameManager.PlayerScene
 	var InputControllerScene: PackedScene = GameManager.InputControllerScene
 	
 	var spawn_spots = player_spawn_spots.get_children()
 	for device_id in GameManager.players.keys():
-		var player: Player = PlayerScene.instantiate()
-		add_child(player)
+		var player: Player = PlayerScene.instantiate() as Player
+		if player == null:
+			return
+		
+		var split_screen_container: SplitScreenContainer = split_screen_grid.add_player_view()
+		split_screen_container.sub_viewport.add_child(player)
 		
 		var player_info: GameManager.PlayerInfo = GameManager.players[device_id]
 		player.global_position = spawn_spots[player_info.device_id].global_position

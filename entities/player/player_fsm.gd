@@ -101,7 +101,7 @@ func handle_controller_camera_rotation():
 		if abs(look_relative.x) > tp_rotate_camera_force_limit:
 			tp_camera_pivot.rotate_y(deg_to_rad(-look_relative.x) * controller_tp_sensitivity_x)
 	else:
-		print("Look Relative: ", look_relative)
+#		print("Look Relative: ", look_relative)
 		# rotation of character on y axis
 		if abs(look_relative.x) > controller_min_axis_value:
 			mob.rotate_y(-look_relative.x * controller_fp_sensitivity_y)
