@@ -19,6 +19,11 @@ func _ready():
 		on_joy_connection_changed(device_id, true)
 
 
+func _process(delta):
+	if Input.is_action_just_pressed("start"):
+		start_button.pressed.emit()
+
+
 func _input(event):
 	if event is InputEventJoypadButton:
 		if Input.is_action_just_pressed("jump"):

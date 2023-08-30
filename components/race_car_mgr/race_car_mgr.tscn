@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vxkqklbcv4gm"]
+
+[ext_resource type="Script" path="res://components/race_car_mgr/race_car_mgr.gd" id="1_xxk5p"]
+
+[node name="RaceCarMgr" type="Node"]
+script = ExtResource("1_xxk5p")

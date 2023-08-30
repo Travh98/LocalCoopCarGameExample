@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://6o2hvnnxifle"]
+[gd_scene load_steps=4 format=3 uid="uid://6o2hvnnxifle"]
 
 [ext_resource type="Script" path="res://ui/join_screen.gd" id="1_0ltxf"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_vqpcl"]
+
+[sub_resource type="Shortcut" id="Shortcut_075iq"]
+events = [SubResource("InputEventAction_vqpcl")]
 
 [node name="JoinScreen" type="Control"]
 layout_mode = 3
@@ -43,4 +48,5 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(500, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+shortcut = SubResource("Shortcut_075iq")
 text = "PRESS START TO BEGIN"
