@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlmaglk55ulnr"]
+[gd_scene load_steps=5 format=3 uid="uid://dlmaglk55ulnr"]
 
 [ext_resource type="Script" path="res://components/location_indicator.gd" id="1_wtbhq"]
 
@@ -8,8 +8,14 @@ albedo_color = Color(0.823529, 0.266667, 0.541176, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_kbss7"]
 material = SubResource("StandardMaterial3D_x1not")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_56e7j"]
+
 [node name="LocationIndicator" type="Node3D"]
 script = ExtResource("1_wtbhq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_kbss7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(9.55343e-16, -2.18557e-08, 0.5, -0.5, -2.18557e-08, 0, 2.18557e-08, -0.5, -2.18557e-08, 0, 0, -0.603896)
+mesh = SubResource("CylinderMesh_56e7j")

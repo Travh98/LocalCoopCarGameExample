@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ltxf")
-next_scene_path = "res://levels/testing/test_level_3.tscn"
+next_scene_path = "res://levels/testing/test_level_4.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

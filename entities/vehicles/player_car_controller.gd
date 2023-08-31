@@ -118,8 +118,8 @@ func jump_car():
 
 
 func rocket_car_forward():
-	car.angular_velocity = Vector3.ZERO
-	car.linear_velocity = Vector3.ZERO
+	car.angular_velocity = car.angular_velocity / 2
+	car.linear_velocity = car.linear_velocity / 2
 	car.apply_central_impulse(-car.global_transform.basis.z * boost_force * 2)
 
 

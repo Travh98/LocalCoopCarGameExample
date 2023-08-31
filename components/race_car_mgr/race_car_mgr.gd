@@ -40,10 +40,10 @@ func on_checkpoint_entered(cp: Node3D, body: Node3D):
 			print("one of our players entered checkpoint")
 			if player_progress_dict[player] == checkpoint_index:
 				player_progress_dict[player] = checkpoint_index + 1
-				player.checkpoint_num = player_progress_dict[player]
+				player.checkpoint_num = player_progress_dict[player] # TODO FIXME
 				recalculate_positions()
 				print("Incrementing this player's checkpoint progress: ", player)
-				if player_progress_dict[player] > num_checkpoints - 1:
+				if player_progress_dict[player] > num_checkpoints:
 					player_progress_dict[player] = 0
 					player.checkpoint_num = player_progress_dict[player]
 					recalculate_positions()
