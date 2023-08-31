@@ -19,7 +19,7 @@ func _ready():
 		on_joy_connection_changed(device_id, true)
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("start"):
 		start_button.pressed.emit()
 

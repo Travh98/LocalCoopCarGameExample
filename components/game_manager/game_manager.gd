@@ -28,7 +28,7 @@ func register_player(player_device_id: int, player_color: Color, player_name: St
 
 
 func change_level(level_path: String):
-	var level = get_tree().root.get_node(current_level_node_name)
+	var level = get_tree().root.get_node_or_null(current_level_node_name)
 	if level != null:
 		get_tree().root.remove_child(level)
 	

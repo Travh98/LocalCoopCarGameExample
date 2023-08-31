@@ -43,6 +43,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fnvjw")
 
+[node name="RaceCarMgr" parent="." instance=ExtResource("17_f2nik")]
+
 [node name="HurtBox" parent="." instance=ExtResource("3_pvhru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -58.4708, 0)
 damage = 1000
@@ -50,110 +52,111 @@ damage = 1000
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("BoxShape3D_xf5x3")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="RaceTrackLevel" type="Node3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="RaceTrackLevel"]
 navigation_mesh = SubResource("NavigationMesh_jxgaf")
 
-[node name="RaceTrack2" parent="NavigationRegion3D" instance=ExtResource("4_pvffj")]
+[node name="RaceTrack2" parent="RaceTrackLevel/NavigationRegion3D" instance=ExtResource("4_pvffj")]
 transform = Transform3D(-6.55671e-07, 0, -15, 0, 15, 0, 15, 0, -6.55671e-07, 0, 0, 0)
 
-[node name="PlayerSpawnSpots" type="Node3D" parent="."]
+[node name="PlayerSpawnSpots" type="Node3D" parent="RaceTrackLevel"]
 
-[node name="LocationIndicator" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.305658, 4.53623, -14.6549)
 
-[node name="LocationIndicator2" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator2" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.62509, 4.82173, -20.3237)
 
-[node name="LocationIndicator3" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator3" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.46707, 5.47514, -24.4609)
 
-[node name="LocationIndicator4" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator4" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.51442, 4.32498, -28.8109)
 
-[node name="LocationIndicator5" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator5" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.908218, 6.61633, -33.1895)
 
-[node name="LocationIndicator6" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator6" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.48066, 5.82235, -38.2521)
 
-[node name="LocationIndicator7" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator7" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.06533, 5.65264, -42.4553)
 
-[node name="LocationIndicator8" parent="PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
+[node name="LocationIndicator8" parent="RaceTrackLevel/PlayerSpawnSpots" instance=ExtResource("15_r78d5")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.65551, 6.41948, -45.1564)
 
-[node name="RaceCarMgr" parent="." instance=ExtResource("17_f2nik")]
+[node name="Checkpoints" type="Node3D" parent="RaceTrackLevel"]
 
-[node name="Checkpoints" type="Node3D" parent="."]
-
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.499965, 0, 0.00591653, 0, 0.5, 0, -0.00591653, 0, -0.499965, 0.32869, 3.93501, -7.25972)
 
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint2" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.431552, 0, -0.252512, 0, 0.5, 0, 0.252512, 0, -0.431552, 6.84912, 5.28884, 35.4715)
 
-[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint3" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.49878, 0, -0.0349044, 0, 0.5, 0, 0.0349044, 0, -0.49878, 23.4073, 5.28884, 65.9961)
 
-[node name="Checkpoint4" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint4" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.311319, 0, 0.391255, 0, 0.5, 0, -0.391255, 0, -0.311319, 13.9043, 5.71303, 96.6646)
 
-[node name="Checkpoint5" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint5" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.32047, 0, 0.383795, 0, 0.5, 0, -0.383795, 0, 0.32047, -22.1284, 6.14102, 93.3253)
 
-[node name="Checkpoint6" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint6" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.491556, 0, -0.0915039, 0, 0.5, 0, 0.0915039, 0, 0.491556, -35.3365, 8.8254, 59.9333)
 
-[node name="Checkpoint7" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint7" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.417006, 0, -0.275874, 0, 0.5, 0, 0.275874, 0, 0.417006, -22.8152, 12.5208, 29.9003)
 
-[node name="Checkpoint8" parent="Checkpoints" instance=ExtResource("18_fobye")]
-transform = Transform3D(0.338958, 0, -0.36757, 0, 0.5, 0, 0.36757, 0, 0.338958, -0.222359, 15.9224, 2.68006)
+[node name="Checkpoint8" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
+transform = Transform3D(0.338958, 0, -0.36757, 0, 0.5, 0, 0.36757, 0, 0.338958, -0.222359, 16.8007, 2.68006)
 
-[node name="Checkpoint9" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint9" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.33116, 0, -0.374611, 0, 0.5, 0, 0.374611, 0, 0.33116, 38.8841, 20.5208, -29.7121)
 
-[node name="Checkpoint10" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint10" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.497787, 0, -0.0469933, 0, 0.5, 0, 0.0469933, 0, 0.497787, 58.5734, 20.5095, -70.2703)
 
-[node name="Checkpoint11" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint11" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(0.437102, 0, 0.242779, 0, 0.5, 0, -0.242779, 0, 0.437102, 52.8637, 19.8872, -114.891)
 
-[node name="Checkpoint12" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint12" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.46658, 0, 0.17973, 0, 0.5, 0, -0.17973, 0, -0.46658, 1.13866, 20.1238, -115.91)
 
-[node name="Checkpoint13" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint13" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.499088, 0, -0.0301933, 0, 0.5, 0, 0.0301933, 0, -0.499088, -5.28036, 12.5845, -84.6785)
 
-[node name="Checkpoint14" parent="Checkpoints" instance=ExtResource("18_fobye")]
+[node name="Checkpoint14" parent="RaceTrackLevel/Checkpoints" instance=ExtResource("18_fobye")]
 transform = Transform3D(-0.497763, 0, -0.0472453, 0, 0.5, 0, 0.0472453, 0, -0.497763, -2.19427, 7.94958, -57.5211)
 
-[node name="Printer" parent="." instance=ExtResource("8_iriae")]
+[node name="Printer" parent="RaceTrackLevel" instance=ExtResource("8_iriae")]
 transform = Transform3D(25, 0, -43.3013, 0, 50, 0, 43.3013, 0, 25, 41.5728, -25.5068, 29.338)
 
-[node name="SkeletonDemons" parent="." instance=ExtResource("9_0w3qu")]
+[node name="SkeletonDemons" parent="RaceTrackLevel" instance=ExtResource("9_0w3qu")]
 transform = Transform3D(25, 0, 0, 0, 23.7074, 7.93469, 0, -7.93469, 23.7074, 26.5517, 94.7356, -102.221)
 
-[node name="crab" parent="." instance=ExtResource("10_y5xjg")]
-transform = Transform3D(-21.434, 2.33233, 12.6549, 4.02312, 24.568, 2.28612, -12.2229, 3.9965, -21.4389, -10.7996, -2.32989, 67.7323)
+[node name="crab" parent="RaceTrackLevel" instance=ExtResource("10_y5xjg")]
+transform = Transform3D(-21.434, 2.33233, 12.6548, 4.02312, 24.568, 2.28613, -12.2229, 3.9965, -21.4389, -10.7996, -2.32989, 67.7323)
 
-[node name="banana" parent="." instance=ExtResource("11_3x0ou")]
+[node name="banana" parent="RaceTrackLevel" instance=ExtResource("11_3x0ou")]
 transform = Transform3D(5.89464, 0, 8.07794, 0, 10, 0, -8.07794, 0, 5.89464, -30.1569, 1.25086, 29.9287)
 
-[node name="banana3" parent="." instance=ExtResource("11_3x0ou")]
+[node name="banana3" parent="RaceTrackLevel" instance=ExtResource("11_3x0ou")]
 transform = Transform3D(3.9033, 0, 9.20675, 0, 10, 0, -9.20675, 0, 3.9033, -32.1384, -0.561482, 40.617)
 
-[node name="banana2" parent="." instance=ExtResource("11_3x0ou")]
+[node name="banana2" parent="RaceTrackLevel" instance=ExtResource("11_3x0ou")]
 transform = Transform3D(7.28957, 0, 6.8456, 0, 10, 0, -6.8456, 0, 7.28957, -24.0366, 2.58387, 19.9255)
 
-[node name="spruce_tree" parent="." instance=ExtResource("12_uyhx6")]
+[node name="spruce_tree" parent="RaceTrackLevel" instance=ExtResource("12_uyhx6")]
 transform = Transform3D(48.0249, 0, -13.9144, 0, 50, 0, 13.9144, 0, 48.0249, -67.5127, -116.742, -120.98)
 
-[node name="spruce_tree2" parent="." instance=ExtResource("12_uyhx6")]
+[node name="spruce_tree2" parent="RaceTrackLevel" instance=ExtResource("12_uyhx6")]
 transform = Transform3D(27.1301, 0, -41.9995, 0, 50, 0, 41.9995, 0, 27.1301, 154.468, -116.742, -115.242)
 
-[node name="spruce_tree3" parent="." instance=ExtResource("12_uyhx6")]
+[node name="spruce_tree3" parent="RaceTrackLevel" instance=ExtResource("12_uyhx6")]
 transform = Transform3D(-3.96993, 0, -49.8421, 0, 50, 0, 49.8421, 0, -3.96993, -124.89, -141.401, 42.5469)
 
-[node name="spruce_tree4" parent="." instance=ExtResource("12_uyhx6")]
+[node name="spruce_tree4" parent="RaceTrackLevel" instance=ExtResource("12_uyhx6")]
 transform = Transform3D(44.1416, 0, -23.4844, 0, 50, 0, 23.4844, 0, 44.1416, 55.1323, -158.354, 167.344)

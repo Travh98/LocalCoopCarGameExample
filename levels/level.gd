@@ -2,7 +2,8 @@ class_name GameLevel
 extends Node3D
 
 @onready var split_screen_grid: SplitScreenGrid = $SplitScreenGrid
-@onready var player_spawn_spots: Node3D = $PlayerSpawnSpots
+@onready var player_spawn_spots: Node3D = $RaceTrackLevel/PlayerSpawnSpots
+@onready var checkpoints_group: Node3D = $RaceTrackLevel/Checkpoints
 @onready var PlayerScene: PackedScene = preload("res://entities/vehicles/mustang.tscn")
 
 var players: Array
@@ -12,7 +13,7 @@ func _ready():
 	# Spawn players on level start
 	spawn_players()
 	
-	for checkpoint in get_node("Checkpoints").get_children():
+	for checkpoint in checkpoints_group.get_children():
 		checkpoints.append(checkpoint)
 
 
@@ -22,7 +23,7 @@ func _process(_delta):
 		get_tree().quit()
 	if Input.is_action_just_pressed("reset_level"):
 		get_tree().reload_current_scene()
-	if Input.is_action_pressed("fullscreen"):
+	if Input.is_action_just_pressed("fullscreen"):
 		if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
