@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvnuta8ck756o"]
+
+[ext_resource type="PackedScene" uid="uid://bmfdongbxbyld" path="res://entities/printer/paper.glb" id="1_sjrni"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwdgp"]
+size = Vector3(0.45, 0.0347875, 0.597544)
+
+[node name="PrinterPaper" type="RigidBody3D"]
+
+[node name="paper" parent="." instance=ExtResource("1_sjrni")]
+
+[node name="PrinterPaperLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.177634, 0.0192429, -0.259264)
+pixel_size = 0.003
+texture_filter = 0
+text = "paperpaperpaperpaperpaper
+paper
+paper
+paper
+paper
+
+"
+font_size = 8
+horizontal_alignment = 0
+vertical_alignment = 0
+line_spacing = 6.0
+autowrap_mode = 3
+width = 125.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_bwdgp")
+
+[editable path="paper"]

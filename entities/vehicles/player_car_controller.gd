@@ -37,9 +37,9 @@ func _physics_process(delta):
 	if brake_pedal > 0 and brake_pedal < 0.5:
 		car.brake = brake_pedal * 10
 	if brake_pedal >= 0.5:
-		car.engine_force = clamp(-brake_pedal * 1600, -400, 0)
+		car.engine_force = clamp(-brake_pedal * 1600, -600, 0)
 	else:
-		car.engine_force = clamp(gas_pedal * 1600, 0, 400)
+		car.engine_force = clamp(gas_pedal * 1600, 0, 600)
 	
 	if abs(car.engine_force) > 100.0:
 		dust_bubble_particles.emitting = true
@@ -78,6 +78,7 @@ func reset_upright():
 
 
 func on_death():
+	print("Player died")
 	if last_checkpoint != null:
 		car.global_position = last_checkpoint.global_position
 		car.global_rotation = last_checkpoint.global_rotation

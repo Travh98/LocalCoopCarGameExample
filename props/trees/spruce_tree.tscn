@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0icndo0ro2no"]
+
+[ext_resource type="PackedScene" uid="uid://e7ih07draxax" path="res://entities/props/ps1_trees.glb" id="1_a024w"]
+
+[node name="spruce_tree" instance=ExtResource("1_a024w")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="SpruceTreeMesh" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
