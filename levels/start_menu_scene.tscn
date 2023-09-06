@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvhqp1exnqger"]
+
+[ext_resource type="Script" path="res://levels/start_menu_scene.gd" id="1_6614u"]
+[ext_resource type="PackedScene" uid="uid://g7iofyysjxda" path="res://ui/start_menu.tscn" id="1_d4t5q"]
+[ext_resource type="PackedScene" uid="uid://b1q5k4e7tlapt" path="res://entities/vehicles/mustang.tscn" id="2_vlpny"]
+[ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="3_b2agb"]
+[ext_resource type="PackedScene" uid="uid://c406b7orsroj" path="res://entities/checkpoint/checkpoint.tscn" id="4_fvqsx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fstei"]
+size = Vector3(1000, 10, 1000)
+
+[node name="StartMenuScene" type="Node3D"]
+script = ExtResource("1_6614u")
+
+[node name="StartMenu" parent="." instance=ExtResource("1_d4t5q")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.959324, -0.082057, 0.270117, 0, 0.956824, 0.290667, -0.282306, -0.278844, 0.917905, 1.99987, 2.15202, 6.79591)
+
+[node name="Mustang" parent="." instance=ExtResource("2_vlpny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.6738, 0)
+
+[node name="HurtBox" parent="." instance=ExtResource("3_b2agb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+damage = 1000
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+shape = SubResource("BoxShape3D_fstei")
+
+[node name="Checkpoint" parent="." instance=ExtResource("4_fvqsx")]
+transform = Transform3D(0.376095, 0, -0.926581, 0, 1, 0, 0.926581, 0, 0.376095, 0, 22, 0)

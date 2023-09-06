@@ -14,6 +14,8 @@ var boost_force = 3000
 var respawn_boost: float = 10
 var used_rocket_charges: int = 0
 var max_rocket_charges: int = 1
+var movement_sensitivity: float = 0.25
+var is_reversing: bool = false
 
 @onready var upright_timer: Timer = $"../UprightVehicleTimer"
 @onready var camera_spring_arm: SpringArm3D = $"../SpringArm3D"
@@ -23,6 +25,7 @@ var max_rocket_charges: int = 1
 @onready var rocket_cooldown_timer: Timer = $"../RocketCooldownTimer"
 @onready var air_trick_delay_timer: Timer = $"../AirTrickDelayTimer"
 @onready var is_grounded_raycast: RayCast3D = $"../IsGroundedRayCast"
+@onready var car_reverse_timer: Timer = $"../CarReverseTimer"
 
 func _ready():
 	upright_timer.timeout.connect(reset_upright)
@@ -41,24 +44,35 @@ func _physics_process(delta):
 	if input_controller == null:
 		return
 	
-	var gas_pedal: float = Input.get_joy_axis(input_controller.device_id, JOY_AXIS_TRIGGER_RIGHT)
-	var brake_pedal: float = Input.get_joy_axis(input_controller.device_id, JOY_AXIS_TRIGGER_LEFT)
+#	var gas_pedal: float = Input.get_joy_axis(input_controller.device_id, JOY_AXIS_TRIGGER_RIGHT)
+#	var brake_pedal: float = Input.get_joy_axis(input_controller.device_id, JOY_AXIS_TRIGGER_LEFT)
+	var gas_pedal: bool = input_controller.is_action_pressed("gas")
 	
-	car.steering = lerp(car.steering, -input_controller.move_vector.x * max_steering_amount, 8 * delta)
+	car.steering = lerp(car.steering, -input_controller.move_vector.x * max_steering_amount * movement_sensitivity, 8 * delta)
 	
-	# Brake the car if slightly braking
-	if brake_pedal > 0.1 and brake_pedal < 0.9:
-		car.brake = brake_pedal * brake_pedal * brake_factor
+	# Brake the car
+	if input_controller.is_action_just_pressed("brake"):
+		car_reverse_timer.start()
+	
+	if input_controller.is_action_pressed("brake"):
+		car.brake = brake_factor
+		if !is_reversing and car_reverse_timer.time_left <= 0:
+			is_reversing = true
+			car.engine_force = clamp(-acceleration, -max_engine_force, 0)
 	else:
 		# Release the brake
 		car.brake = 0
+		is_reversing = false
+	
+	
 	# If fully braking, start driving backwards
-	if brake_pedal >= 0.9:
-		car.brake = 0
-		car.engine_force = clamp(-brake_pedal * acceleration, -max_engine_force, 0)
-	else:
+#	if brake_pedal >= 0.9:
+#		car.brake = 0
+#		car.engine_force = clamp(-brake_pedal * acceleration, -max_engine_force, 0)
+#	else:
+	if input_controller.is_action_pressed("gas"):
 		# Drive forwards
-		car.engine_force = clamp(gas_pedal * acceleration, 0, max_engine_force)
+		car.engine_force = clamp(acceleration, 0, max_engine_force)
 	
 	handle_particles()
 	

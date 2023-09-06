@@ -80,3 +80,6 @@ one_shot = true
 [node name="AirTrickDelayTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="CarReverseTimer" type="Timer" parent="."]
+one_shot = true

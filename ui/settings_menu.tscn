@@ -1,0 +1,268 @@
+[gd_scene load_steps=2 format=3 uid="uid://3pfgbbtegb85"]
+
+[ext_resource type="Script" path="res://ui/settings_menu.gd" id="1_6e1ee"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_6e1ee")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.376471, 0.47451, 0.52549, 1)
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Video" type="TabBar" parent="MarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Video/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+columns = 2
+
+[node name="DisplayModeLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Display Mode"
+
+[node name="DisplayModeOptions" type="OptionButton" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="VsyncLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Vsync"
+
+[node name="VsyncButton" type="CheckButton" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="DisplayFpsLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Display Fps"
+
+[node name="DisplayFpsButton" type="CheckButton" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MaxFpsLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Max FPS"
+
+[node name="MaxFpsSliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MaxFpsValue" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer/MaxFpsSliderValue"]
+layout_mode = 2
+text = "max"
+
+[node name="MaxFpsSlider" type="HSlider" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer/MaxFpsSliderValue"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 24.0
+max_value = 120.0
+value = 120.0
+
+[node name="BloomLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Bloom"
+
+[node name="BloomButton" type="CheckButton" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="BrightnessLabel" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Brightness"
+
+[node name="BrightnessSliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="BrightnessValue" type="Label" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer/BrightnessSliderValue"]
+layout_mode = 2
+text = "1.0"
+
+[node name="BrightnessSlider" type="HSlider" parent="MarginContainer/TabContainer/Video/MarginContainer/GridContainer/BrightnessSliderValue"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 2.0
+value = 1.0
+
+[node name="Audio" type="TabBar" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Audio/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+columns = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeValue" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/MasterVolumeSliderValue"]
+layout_mode = 2
+text = "-10dB"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/MasterVolumeSliderValue"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -120.0
+max_value = 20.0
+value = -10.0
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeValue" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/MusicVolumeSliderValue"]
+layout_mode = 2
+text = "-10dB"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/MusicVolumeSliderValue"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -120.0
+max_value = 20.0
+value = -10.0
+
+[node name="SfxVolumeLabel" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SfxVolumeSliderValue3" type="HBoxContainer" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SfxVolumeValue" type="Label" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/SfxVolumeSliderValue3"]
+layout_mode = 2
+text = "-10dB"
+
+[node name="SfxVolumeSlider" type="HSlider" parent="MarginContainer/TabContainer/Audio/MarginContainer/GridContainer/SfxVolumeSliderValue3"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -120.0
+max_value = 20.0
+value = -10.0
+
+[node name="Gameplay" type="TabBar" parent="MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Gameplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/TabContainer/Gameplay/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+columns = 2
+
+[node name="FovLabel" type="Label" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "FOV"
+
+[node name="FovSliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="FovValue" type="Label" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer/FovSliderValue"]
+layout_mode = 2
+text = "70"
+
+[node name="FovSlider" type="HSlider" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer/FovSliderValue"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 30.0
+max_value = 120.0
+value = 30.0
+
+[node name="MouseSensitivityLabel" type="Label" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="MouseSensitivitySliderValue" type="HBoxContainer" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MouseSensitivityValue" type="Label" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer/MouseSensitivitySliderValue"]
+layout_mode = 2
+text = "0.1"
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="MarginContainer/TabContainer/Gameplay/MarginContainer/GridContainer/MouseSensitivitySliderValue"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.01
+max_value = 5.0
+step = 0.01
+value = 0.01
+
+[node name="Button" type="Button" parent="MarginContainer"]
+visible = false
+layout_mode = 2

@@ -20,13 +20,14 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("start"):
-		start_button.pressed.emit()
-
+#	if Input.is_action_just_pressed("start"):
+#		start_button.pressed.emit()
+	pass
+	
 
 func _input(event):
 	if event is InputEventJoypadButton:
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("gas"):
 			if event.is_pressed():
 				if controller_panels[event.device] != null:
 					var ctrl_panel: ControllerSelectionPanel = controller_panels[event.device]
