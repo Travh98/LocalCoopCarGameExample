@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm51m7sqnek5g"]
 
 [ext_resource type="Texture2D" uid="uid://bs5xc3ber2vpp" path="res://ui/controller_icon.png" id="1_0diii"]
-[ext_resource type="Script" path="res://ui/controller_selection_panel.gd" id="1_nbc2l"]
+[ext_resource type="Script" uid="uid://b73xrf5p6416u" path="res://ui/controller_selection_panel.gd" id="1_nbc2l"]
 
 [node name="ControllerSelectionPanel" type="PanelContainer"]
 offset_right = 240.0

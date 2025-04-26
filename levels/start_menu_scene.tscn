@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bvhqp1exnqger"]
 
-[ext_resource type="Script" path="res://levels/start_menu_scene.gd" id="1_6614u"]
+[ext_resource type="Script" uid="uid://22mcamvty1o0" path="res://levels/start_menu_scene.gd" id="1_6614u"]
 [ext_resource type="PackedScene" uid="uid://g7iofyysjxda" path="res://ui/start_menu.tscn" id="1_d4t5q"]
 [ext_resource type="PackedScene" uid="uid://b1q5k4e7tlapt" path="res://entities/vehicles/mustang.tscn" id="2_vlpny"]
 [ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="3_b2agb"]

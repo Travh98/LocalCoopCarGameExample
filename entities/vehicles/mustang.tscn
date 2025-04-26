@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://b1q5k4e7tlapt"]
 
 [ext_resource type="PackedScene" uid="uid://hwiqrwp4js82" path="res://entities/vehicles/Mustang.glb" id="1_4pkt6"]
-[ext_resource type="Script" path="res://entities/vehicles/car.gd" id="1_p0g41"]
+[ext_resource type="Script" uid="uid://cvo65csr1wr4i" path="res://entities/vehicles/car.gd" id="1_p0g41"]
 [ext_resource type="PackedScene" uid="uid://c7xiuy458qr7j" path="res://entities/vehicles/wheels/wheel.tscn" id="2_s13lj"]
 [ext_resource type="PackedScene" uid="uid://dlmaglk55ulnr" path="res://components/location_indicator.tscn" id="3_3gd6c"]
 [ext_resource type="PackedScene" uid="uid://xla4kud3gc0l" path="res://entities/vehicles/dust_bubble_particles.tscn" id="4_vjqgi"]
-[ext_resource type="Script" path="res://entities/vehicles/player_car_controller.gd" id="6_ngpi6"]
+[ext_resource type="Script" uid="uid://cp6o1ad4r3qu2" path="res://entities/vehicles/player_car_controller.gd" id="6_ngpi6"]
 [ext_resource type="PackedScene" uid="uid://cjbkrjimolek1" path="res://components/health_component/health_component.tscn" id="7_dpkqx"]
 [ext_resource type="PackedScene" uid="uid://m7xv0r8c8a2t" path="res://components/follow_camera/follow_camera.tscn" id="8_up0rm"]
 [ext_resource type="PackedScene" uid="uid://ct1v0jtqwvicy" path="res://ui/race_car_hud.tscn" id="9_iqqjr"]

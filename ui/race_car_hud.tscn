@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ct1v0jtqwvicy"]
 
 [ext_resource type="Texture2D" uid="uid://4rpswgo5n63" path="res://entities/checkpoint/raceflag_checkpoint.png" id="1_ccm8t"]
-[ext_resource type="Script" path="res://ui/race_car_hud.gd" id="1_ghpg6"]
+[ext_resource type="Script" uid="uid://b2ubnwlcq8obn" path="res://ui/race_car_hud.gd" id="1_ghpg6"]
 
 [node name="RaceCarHud" type="Control"]
 layout_mode = 3

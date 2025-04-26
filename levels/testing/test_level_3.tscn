@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bt1gspw6grljg"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_y2pj5"]
+[ext_resource type="Script" uid="uid://ch51ndfr66f12" path="res://levels/level.gd" id="1_y2pj5"]
 [ext_resource type="PackedScene" uid="uid://bxcgxylupbesr" path="res://ui/split_screen_grid.tscn" id="2_hhv14"]
 [ext_resource type="PackedScene" uid="uid://sboyc7632ei8" path="res://components/hurt_box/hurt_box.tscn" id="3_pvhru"]
 [ext_resource type="PackedScene" uid="uid://dtrewbl3fpqx8" path="res://props/race_tracks/race_track_2.tscn" id="4_pvffj"]
@@ -160,3 +160,4 @@ transform = Transform3D(-3.96993, 0, -49.8421, 0, 50, 0, 49.8421, 0, -3.96993, -
 
 [node name="spruce_tree4" parent="RaceTrackLevel" instance=ExtResource("12_uyhx6")]
 transform = Transform3D(44.1416, 0, -23.4844, 0, 50, 0, 23.4844, 0, 44.1416, 55.1323, -158.354, 167.344)
+visible = false

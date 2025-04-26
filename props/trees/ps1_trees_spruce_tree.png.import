@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x2mos3xpleqs"
+uid="uid://7dp465c3kk5q"
 path.s3tc="res://.godot/imported/ps1_trees_spruce_tree.png-2dee36cce5b3a5acaee71ad36f8f2a3b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

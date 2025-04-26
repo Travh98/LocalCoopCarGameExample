@@ -1,5 +1,7 @@
 extends Control
 
+# Tutorial: https://www.youtube.com/watch?v=be-Xjg8oPbQ
+
 # Video Settings
 @onready var display_mode_options: OptionButton = $MarginContainer/TabContainer/Video/MarginContainer/GridContainer/DisplayModeOptions
 @onready var vsync_button: CheckButton = $MarginContainer/TabContainer/Video/MarginContainer/GridContainer/VsyncButton
